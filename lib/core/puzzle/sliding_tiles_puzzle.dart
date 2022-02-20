@@ -14,7 +14,7 @@ class SlidingTilesPuzzle {
     final int dimension,
   ) {
     final List<PuzzleTile> tiles = List.generate(
-      dimension * dimension,
+      (dimension * dimension) - 1,
       (index) => PuzzleTile(
         index.toString(),
         PuzzleGridPosition(
@@ -28,7 +28,7 @@ class SlidingTilesPuzzle {
       ),
     );
     final PuzzleGridPosition emptySpace =
-        PuzzleGridPosition(dimension, dimension);
+        PuzzleGridPosition(dimension - 1, dimension - 1);
 
     return SlidingTilesPuzzle(dimension, tiles, emptySpace);
   }
@@ -73,31 +73,30 @@ extension SlidingTilesPuzzleX on SlidingTilesPuzzle {
   bool get isSolved => tiles.every((t) => t.isInCorrectPosition);
 
   bool canMoveTile(PuzzleTile tile) {
-    final bool horizontallyAdjacent =
+    final bool adjacentColumns =
         (tile.currentPosition.x - emptySpace.x).abs() == 1;
 
-    final bool horizontallyCoinciding =
-        (tile.currentPosition.y - emptySpace.y).abs() == 0;
+    final bool sameRow = tile.currentPosition.y == emptySpace.y;
 
-    final bool verticallyAdjacent =
+    final bool adjacentRows =
         (tile.currentPosition.y - emptySpace.y).abs() == 1;
 
-    final bool verticallyCoinciding =
-        (tile.currentPosition.x - emptySpace.x).abs() == 0;
+    final bool sameColumn = tile.currentPosition.x == emptySpace.x;
 
-    return (horizontallyAdjacent && verticallyCoinciding) ||
-        (verticallyAdjacent && horizontallyCoinciding);
+    return (adjacentColumns && sameRow) || (adjacentRows && sameColumn);
   }
 
   SlidingTilesPuzzle moveTile(PuzzleTile tile) {
+    final PuzzleGridPosition nextEmptySpace = tile.currentPosition;
     final movedTile = tile.copyWith(currentPosition: emptySpace);
     final mutableTiles = tiles;
-    mutableTiles.remove(tile);
-    mutableTiles.add(movedTile);
+
+    final int index = tiles.indexOf(tile);
+    mutableTiles[index] = movedTile;
 
     return copyWith(
       tiles: mutableTiles,
-      emptySpace: tile.currentPosition,
+      emptySpace: nextEmptySpace,
     );
   }
 }
