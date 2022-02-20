@@ -4,10 +4,21 @@ import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
 import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
 
+enum DisplayDelegateViewConfigType { text, background }
+
+class TileDisplayConfig {
+  final DisplayDelegateViewConfigType type;
+  final String value;
+
+  TileDisplayConfig(this.type, this.value);
+}
+
+typedef DisplayDelegateConfigFunction = String Function(PuzzleTile tile);
+
 class PuzzleViewModel {
   final Size puzzleCanvasSize;
   final SlidingTilesPuzzle puzzle;
-  final String Function(PuzzleTile tile) displayDataDelegate;
+  final DisplayDelegateConfigFunction displayDataDelegate;
 
   PuzzleViewModel(
     this.puzzleCanvasSize,
@@ -23,12 +34,10 @@ class PuzzleViewModel {
   late final List<PuzzleTileViewModel>
       puzzleTiles; // Make this a value listenable?
   late final Size size;
-
-  
 }
 
-extension PVMX on PuzzleViewModel{
-PuzzleTileViewModel tileViewModelFrom(PuzzleTile tile) {
+extension PVMX on PuzzleViewModel {
+  PuzzleTileViewModel tileViewModelFrom(PuzzleTile tile) {
     return PuzzleTileViewModel(
       tile.id,
       tile.currentPosition,
