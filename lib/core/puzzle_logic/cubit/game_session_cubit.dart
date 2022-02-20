@@ -28,16 +28,21 @@ class GameSessionCubit extends Cubit<GameSessionState> {
         );
 
   void handleTileTapped(PuzzleTile tile) {
-    if (state is GameSessionOngoing) {
+    if (state is GameSessionOngoing || state is GameSessionInitial) {
       final puzzle = state.model.puzzle;
       if (puzzle.canMoveTile(tile)) {
-        state.model.puzzle.moveTile(tile);
-        emit(GameSessionOngoing(state.model));
-      }
-    }
+        final changedPuzzle = state.model.puzzle.moveTile(tile);
 
-    if (state.model.puzzle.isSolved) {
-      GameSessionEnded(state.model);
+        if (changedPuzzle.isSolved) {
+         emit (GameSessionEnded(state.model));
+        } else {
+          emit(
+            GameSessionOngoing(
+              state.model.copyWith(puzzle: changedPuzzle),
+            ),
+          );
+        }
+      }
     }
   }
 }
