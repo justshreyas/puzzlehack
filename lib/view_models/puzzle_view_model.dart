@@ -13,7 +13,7 @@ class TileDisplayConfig {
   TileDisplayConfig(this.type, this.value);
 }
 
-typedef DisplayDelegateConfigFunction = String Function(PuzzleTile tile);
+typedef DisplayDelegateConfigFunction = TileDisplayConfig Function(PuzzleTile tile);
 
 class PuzzleViewModel {
   final Size puzzleCanvasSize;
@@ -34,6 +34,19 @@ class PuzzleViewModel {
   late final List<PuzzleTileViewModel>
       puzzleTiles; // Make this a value listenable?
   late final Size size;
+
+  PuzzleViewModel copyWith({
+    Size? puzzleCanvasSize,
+    SlidingTilesPuzzle? puzzle,
+    DisplayDelegateConfigFunction? displayDataDelegate,
+     Size? size,
+  }) {
+    return PuzzleViewModel(
+      puzzleCanvasSize ?? this.puzzleCanvasSize,
+      puzzle ?? this.puzzle,
+      displayDataDelegate ?? this.displayDataDelegate,
+    );
+  }
 }
 
 extension PVMX on PuzzleViewModel {
@@ -41,7 +54,7 @@ extension PVMX on PuzzleViewModel {
     return PuzzleTileViewModel(
       tile.id,
       tile.currentPosition,
-      displayDataDelegate(tile),
+      displayDataDelegate(tile).value,//TODO : Refactor inside tile
       size,
     );
   }

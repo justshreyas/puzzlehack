@@ -3,21 +3,26 @@ import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
 
 class SlidingTile extends StatelessWidget {
   final PuzzleTileViewModel puzzleTile;
+  final void Function() onTap;
 
   const SlidingTile({
     Key? key,
     required this.puzzleTile,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
-      duration: const Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 200),
       top: puzzleTile.distanceFromTop,
       left: puzzleTile.distanceFromLeft,
-      child: SimplePuzzleTile(
-        text: puzzleTile.tileDisplayData,
-        size: puzzleTile.size,
+      child: GestureDetector(
+        onTap: onTap,
+        child: SimplePuzzleTile(
+          text: puzzleTile.tileDisplayData,
+          size: puzzleTile.size,
+        ),
       ),
     );
   }
