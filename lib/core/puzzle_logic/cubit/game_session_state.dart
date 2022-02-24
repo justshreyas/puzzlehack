@@ -11,6 +11,10 @@ class GameSessionInitial extends GameSessionState {
   const GameSessionInitial(final PuzzleViewModel  model) : super( model);
 }
 
+class GameSessionScrambling extends GameSessionState {
+  const GameSessionScrambling(final PuzzleViewModel  model) : super( model);
+}
+
 class GameSessionOngoing extends GameSessionState {
   const GameSessionOngoing(final PuzzleViewModel  model) : super( model);
 }
