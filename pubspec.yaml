@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: 
+  just_audio: ^0.9.20
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +23,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+assets:
+  - assets/audio/

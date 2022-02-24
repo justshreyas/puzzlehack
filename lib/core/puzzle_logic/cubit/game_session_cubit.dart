@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:meta/meta.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
@@ -12,6 +13,9 @@ part 'game_session_state.dart';
 class GameSessionCubit extends Cubit<GameSessionState> {
   final DisplayDelegateConfigFunction delegateConfigurator;
   Size size;
+
+  final tileClickedPlayer = AudioPlayer();// TODO : dispose
+
   GameSessionCubit(
     this.delegateConfigurator,
     this.size, {
@@ -27,7 +31,10 @@ class GameSessionCubit extends Cubit<GameSessionState> {
               delegateConfigurator,
             ),
           ),
-        );
+        ) {
+    tileClickedPlayer.setAsset("/audio/tile-tapped.mp3");
+    tileClickedPlayer.load();
+  }
 
   Future<void> scrambleTiles(int numberOfScrambles) async {
     // * Start scrambling
@@ -67,6 +74,9 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   void handleTileTapped(PuzzleTile tile) {
+    tileClickedPlayer.pause();
+    tileClickedPlayer.seek(Duration.zero);
+
     if (state is GameSessionOngoing || state is GameSessionInitial) {
       final puzzle = state.model.puzzle;
       if (puzzle.canMoveTile(tile)) {
@@ -80,6 +90,8 @@ class GameSessionCubit extends Cubit<GameSessionState> {
               state.model.copyWith(puzzle: changedPuzzle),
             ),
           );
+
+          tileClickedPlayer.play();
         }
       }
     }
