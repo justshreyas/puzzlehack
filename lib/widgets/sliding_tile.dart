@@ -39,12 +39,18 @@ class SimplePuzzleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue[300],
-      child: SizedBox.fromSize(
-        size: size,
-        child: Center(
-          child: Text(text),
+    return SizedBox.fromSize(
+      size: size,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Container(
+          color: Theme.of(context).primaryColor.withOpacity(0.6),
+          child: Center(
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
         ),
       ),
     );
