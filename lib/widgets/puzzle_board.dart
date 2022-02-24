@@ -21,9 +21,7 @@ class PuzzleBoard extends StatelessWidget {
         }
 
         return Container(
-          color: (state is GameSessionScrambling)
-              ? Colors.red[200]
-              : Colors.grey[300],
+          color: Colors.grey[300],
           child: Stack(
             children: List.generate(
               state.model.puzzle.tiles.length,
@@ -33,7 +31,7 @@ class PuzzleBoard extends StatelessWidget {
                 return SlidingTile(
                   puzzleTile: tileModel,
                   animationDurationInMilliseconds:
-                      (state is GameSessionScrambling) ? 5 : 200,
+                      (state is GameSessionScrambling) ? 50 : 200,
                   onTap: () {
                     cubit.handleTileTapped(tile);
                   },

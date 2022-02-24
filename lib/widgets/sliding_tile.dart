@@ -17,6 +17,7 @@ class SlidingTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedPositioned(
       duration: Duration(milliseconds: animationDurationInMilliseconds),
+      curve: Curves.decelerate,
       top: puzzleTile.distanceFromTop,
       left: puzzleTile.distanceFromLeft,
       child: GestureDetector(
@@ -46,7 +47,10 @@ class SimplePuzzleTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Container(
-          color: Theme.of(context).primaryColor.withOpacity(0.6),
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor.withOpacity(0.5),
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+          ),
           child: Center(
             child: Text(
               text,

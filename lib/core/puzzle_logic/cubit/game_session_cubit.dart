@@ -57,7 +57,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       final changedPuzzle = mutablePuzzle.moveTile(candidate);
 
       emit(
-        GameSessionOngoing(
+        GameSessionScrambling(
           state.model.copyWith(
             puzzle: changedPuzzle,
           ),
