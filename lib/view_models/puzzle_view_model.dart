@@ -13,7 +13,8 @@ class TileDisplayConfig {
   TileDisplayConfig(this.type, this.value);
 }
 
-typedef DisplayDelegateConfigFunction = TileDisplayConfig Function(PuzzleTile tile);
+typedef DisplayDelegateConfigFunction = TileDisplayConfig Function(
+    PuzzleTile tile);
 
 class PuzzleViewModel {
   final Size puzzleCanvasSize;
@@ -39,7 +40,7 @@ class PuzzleViewModel {
     Size? puzzleCanvasSize,
     SlidingTilesPuzzle? puzzle,
     DisplayDelegateConfigFunction? displayDataDelegate,
-     Size? size,
+    Size? size,
   }) {
     return PuzzleViewModel(
       puzzleCanvasSize ?? this.puzzleCanvasSize,
@@ -54,7 +55,7 @@ extension PVMX on PuzzleViewModel {
     return PuzzleTileViewModel(
       tile.id,
       tile.currentPosition,
-      displayDataDelegate(tile).value,//TODO : Refactor inside tile
+      displayDataDelegate(tile).value, //TODO : Refactor inside tile
       size,
     );
   }

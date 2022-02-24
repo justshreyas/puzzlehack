@@ -14,7 +14,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   final DisplayDelegateConfigFunction delegateConfigurator;
   Size size;
 
-  final tileClickedPlayer = AudioPlayer();// TODO : dispose
+  final tileClickedPlayer = AudioPlayer(); // TODO : dispose
 
   GameSessionCubit(
     this.delegateConfigurator,
