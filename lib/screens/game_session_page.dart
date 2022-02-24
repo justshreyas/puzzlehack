@@ -16,6 +16,13 @@ class GameSessionPage extends StatefulWidget {
 
 class _GameSessionPageState extends State<GameSessionPage> {
   @override
+  void initState() {
+    super.initState();
+
+    widget.gameSessionCubit.scrambleTiles(50);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

@@ -17,11 +17,13 @@ class PuzzleBoard extends StatelessWidget {
       bloc: cubit,
       builder: (context, state) {
         if (state is GameSessionEnded) {
-          return  const Text("Wohoo!");
+          return const Text("Wohoo!");
         }
 
         return Container(
-          color: Colors.grey[300],
+          color: (state is GameSessionScrambling)
+              ? Colors.red[200]
+              : Colors.grey[300],
           child: Stack(
             children: List.generate(
               state.model.puzzle.tiles.length,
@@ -30,6 +32,8 @@ class PuzzleBoard extends StatelessWidget {
                 final tileModel = state.model.tileViewModelFrom(tile);
                 return SlidingTile(
                   puzzleTile: tileModel,
+                  animationDurationInMilliseconds:
+                      (state is GameSessionScrambling) ? 5 : 200,
                   onTap: () {
                     cubit.handleTileTapped(tile);
                   },
