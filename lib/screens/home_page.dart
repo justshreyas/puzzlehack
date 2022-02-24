@@ -31,14 +31,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        titleTextStyle: Theme.of(context).textTheme.headline6,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "You'll be playing a $dimension x $dimension sliding tile puzzle",
-              style: Theme.of(context).textTheme.headline3,
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                "You'll be playing a $dimension x $dimension sliding tile puzzle",
+                style: Theme.of(context).textTheme.headline3,
+              ),
             )
           ],
         ),
