@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
@@ -14,7 +15,9 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   final DisplayDelegateConfigFunction delegateConfigurator;
   Size size;
 
-  final tileClickedPlayer = AudioPlayer(); // TODO : dispose
+  final tileClickedPlayer = AudioPlayer();
+  // final backgroundMusicPlayer = AudioPlayer();
+  final countdownMusicPlayer = AudioPlayer();
 
   GameSessionCubit(
     this.delegateConfigurator,
@@ -32,11 +35,28 @@ class GameSessionCubit extends Cubit<GameSessionState> {
             ),
           ),
         ) {
+    // * Set+Load audio assets
     tileClickedPlayer.setAsset("/audio/tile-tapped.mp3");
     tileClickedPlayer.load();
+
+    // backgroundMusicPlayer.setAsset("/audio/background-music.mp3");
+    // backgroundMusicPlayer.load();
+
+    countdownMusicPlayer.setAsset("/audio/countdown-timer.mp3");
+    countdownMusicPlayer.load();
+  }
+
+  void dispose() {
+    tileClickedPlayer.stop();
+    tileClickedPlayer.dispose();
+
+    countdownMusicPlayer.stop();
+    countdownMusicPlayer.dispose();
   }
 
   Future<void> scrambleTiles(int numberOfScrambles) async {
+    countdownMusicPlayer.play();
+
     // * Start scrambling
     emit(GameSessionScrambling(state.model));
 
@@ -52,7 +72,13 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     }
 
     // * Stop scrambling and let user play
-    emit(GameSessionOngoing(state.model));
+
+    Future.delayed(
+      const Duration(milliseconds: 2500),
+      () {
+        emit(GameSessionOngoing(state.model));
+      },
+    );
   }
 
   @visibleForTesting

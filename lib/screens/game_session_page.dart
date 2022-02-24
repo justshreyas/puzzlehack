@@ -23,6 +23,13 @@ class _GameSessionPageState extends State<GameSessionPage> {
   }
 
   @override
+  void dispose() {
+    widget.gameSessionCubit.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

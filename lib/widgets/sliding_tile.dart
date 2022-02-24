@@ -49,7 +49,7 @@ class SimplePuzzleTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor.withOpacity(0.5),
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
           child: Center(
             child: Text(
