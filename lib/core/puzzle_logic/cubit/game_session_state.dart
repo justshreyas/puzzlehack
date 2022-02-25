@@ -2,23 +2,23 @@ part of 'game_session_cubit.dart';
 
 @immutable
 abstract class GameSessionState {
-  final PuzzleViewModel model;
+  final SlidingTilesPuzzle puzzle;
 
-  const GameSessionState(this.model);
+  const GameSessionState(this.puzzle);
 }
 
 class GameSessionInitial extends GameSessionState {
-  const GameSessionInitial(final PuzzleViewModel model) : super(model);
+  const GameSessionInitial(final SlidingTilesPuzzle puzzle) : super(puzzle);
 }
 
 class GameSessionScrambling extends GameSessionState {
-  const GameSessionScrambling(final PuzzleViewModel model) : super(model);
+  const GameSessionScrambling(final SlidingTilesPuzzle puzzle) : super(puzzle);
 }
 
 class GameSessionOngoing extends GameSessionState {
-  const GameSessionOngoing(final PuzzleViewModel model) : super(model);
+  const GameSessionOngoing(final SlidingTilesPuzzle puzzle) : super(puzzle);
 }
 
 class GameSessionEnded extends GameSessionState {
-  const GameSessionEnded(final PuzzleViewModel model) : super(model);
+  const GameSessionEnded(final SlidingTilesPuzzle puzzle) : super(puzzle);
 }

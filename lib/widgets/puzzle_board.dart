@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puzzlehack/core/puzzle/tile.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
-import 'package:puzzlehack/view_models/puzzle_view_model.dart';
+import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
 import 'package:puzzlehack/widgets/sliding_tile.dart';
 
 class PuzzleBoard extends StatelessWidget {
@@ -51,14 +52,21 @@ class PuzzleBoard extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final availableSize = MediaQuery.of(context).size;
+        final shorterSide = availableSize.height > availableSize.width
+            ? availableSize.width
+            : availableSize.height;
+        final double dimensionSize = shorterSide / state.puzzle.dimension;
+        final size = Size(dimensionSize, dimensionSize);
+
         return Container(
           color: Colors.grey[300],
           child: Stack(
             children: List.generate(
-              state.model.puzzle.tiles.length,
+              state.puzzle.tiles.length,
               (index) {
-                final tile = state.model.puzzle.tiles[index];
-                final tileModel = state.model.tileViewModelFrom(tile);
+                final tile = state.puzzle.tiles[index];
+                final tileModel = tileViewModelFrom(tile, size);
                 return SlidingTile(
                   puzzleTile: tileModel,
                   animationDurationInMilliseconds:
@@ -72,6 +80,15 @@ class PuzzleBoard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  PuzzleTileViewModel tileViewModelFrom(PuzzleTile tile, size) {
+    return PuzzleTileViewModel(
+      tile.id,
+      tile.currentPosition,
+      tile.id,
+      size,
     );
   }
 }

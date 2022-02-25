@@ -26,13 +26,11 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     bool randomize = true,
   }) : super(
           GameSessionInitial(
-            PuzzleViewModel(
-              size,
+          
               randomize
                   ? SlidingTilesPuzzle.random(dimension)
                   : SlidingTilesPuzzle.solved(dimension),
-              delegateConfigurator,
-            ),
+             
           ),
         ) {
     // * Set+Load audio assets
@@ -58,11 +56,11 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     countdownMusicPlayer.play();
 
     // * Start scrambling
-    emit(GameSessionScrambling(state.model));
+    emit(GameSessionScrambling(state.puzzle));
 
     final randomizer =
         Random(numberOfScrambles); //TODO : remove seed before perod
-    final int dimension = state.model.puzzle.dimension;
+    final int dimension = state.puzzle.dimension;
     const delayDuration = Duration(milliseconds: 60);
 
     for (var itr = 0; itr < numberOfScrambles; itr++) {
@@ -77,14 +75,14 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
-        emit(GameSessionOngoing(state.model));
+        emit(GameSessionOngoing(state.puzzle));
       },
     );
   }
 
   @visibleForTesting
   void tryMovingATile(int randomIndex) {
-    final mutablePuzzle = state.model.puzzle;
+    final mutablePuzzle = state.puzzle;
     final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
 
     if (mutablePuzzle.canMoveTile(candidate)) {
@@ -92,9 +90,8 @@ class GameSessionCubit extends Cubit<GameSessionState> {
 
       emit(
         GameSessionScrambling(
-          state.model.copyWith(
-            puzzle: changedPuzzle,
-          ),
+         changedPuzzle
+        
         ),
       );
     }
@@ -105,16 +102,16 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     tileClickedPlayer.seek(Duration.zero);
 
     if (state is GameSessionOngoing || state is GameSessionInitial) {
-      final puzzle = state.model.puzzle;
+      final puzzle = state.puzzle;
       if (puzzle.canMoveTile(tile)) {
-        final changedPuzzle = state.model.puzzle.moveTile(tile);
+        final changedPuzzle = state.puzzle.moveTile(tile);
 
         if (changedPuzzle.isSolved) {
-          emit(GameSessionEnded(state.model));
+          emit(GameSessionEnded(state.puzzle));
         } else {
           emit(
             GameSessionOngoing(
-              state.model.copyWith(puzzle: changedPuzzle),
+         changedPuzzle
             ),
           );
 
