@@ -111,10 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
             randomize: false,
           );
 
-          context
+         final audioManager= context
               .read<AudioManagerCubit>()
-              .audioDataDelegate
-              .pausePreGameMusic();
+              
+             ;audioManager.audioDataDelegate .pausePreGameMusic();
 
           unawaited(
             Navigator.push(
@@ -123,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (_) {
                   return GameSessionPage(
                     gameSessionCubit: cubit,
+                    audioManagerCubit: audioManager,
                   );
                 },
               ),

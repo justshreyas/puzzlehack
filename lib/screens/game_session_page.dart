@@ -6,9 +6,11 @@ import 'package:puzzlehack/widgets/puzzle_board.dart';
 
 class GameSessionPage extends StatefulWidget {
   final GameSessionCubit gameSessionCubit;
+  final AudioManagerCubit audioManagerCubit;
   const GameSessionPage({
     Key? key,
     required this.gameSessionCubit,
+    required this.audioManagerCubit,
   }) : super(key: key);
 
   @override
@@ -20,13 +22,13 @@ class _GameSessionPageState extends State<GameSessionPage> {
   void initState() {
     super.initState();
 
-    final manager = context.read<AudioManagerCubit>();
-    if (manager.state.musicEnabled) {
-      manager.audioDataDelegate.playGameSessionMusic();
+    
+    if (widget.audioManagerCubit.state.musicEnabled) {
+      widget.audioManagerCubit.audioDataDelegate.playGameSessionMusic();
     }
 
-    if (manager.state.soundsEnabled) {
-      // manager.audioDataDelegate.playGameScramblingCountdown();
+    if (widget.audioManagerCubit.state.soundsEnabled) {
+      // widget.audioManagerCubit.audioDataDelegate.playGameScramblingCountdown();
     }
     widget.gameSessionCubit.scrambleTiles(50);
   }
@@ -34,21 +36,24 @@ class _GameSessionPageState extends State<GameSessionPage> {
   @override
   void dispose() {
     widget.gameSessionCubit.dispose();
-context.read<AudioManagerCubit>().audioDataDelegate.pauseGameSessionMusic();
+    widget.audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocBuilder<GameSessionCubit, GameSessionState>(
-          bloc: widget.gameSessionCubit,
-          builder: (context, state) {
-            return PuzzleBoard(
-              cubit: widget.gameSessionCubit,
-            );
-          },
+    return BlocProvider<AudioManagerCubit>(
+      create: (context) => widget.audioManagerCubit,
+      child: Scaffold(
+        body: Center(
+          child: BlocBuilder<GameSessionCubit, GameSessionState>(
+            bloc: widget.gameSessionCubit,
+            builder: (context, state) {
+              return PuzzleBoard(
+                cubit: widget.gameSessionCubit,
+              );
+            },
+          ),
         ),
       ),
     );
