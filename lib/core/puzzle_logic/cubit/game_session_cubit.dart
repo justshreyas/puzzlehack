@@ -60,7 +60,8 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     // * Start scrambling
     emit(GameSessionScrambling(state.model));
 
-    final randomizer = Random(numberOfScrambles);
+    final randomizer =
+        Random(numberOfScrambles); //TODO : remove seed before perod
     final int dimension = state.model.puzzle.dimension;
     const delayDuration = Duration(milliseconds: 60);
 
@@ -74,7 +75,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     // * Stop scrambling and let user play
 
     Future.delayed(
-      const Duration(milliseconds: 2500),
+      const Duration(milliseconds: 1500),
       () {
         emit(GameSessionOngoing(state.model));
       },
