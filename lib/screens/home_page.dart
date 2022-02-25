@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
 import 'package:puzzlehack/view_models/puzzle_view_model.dart';
 
@@ -25,6 +29,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // final manager = context.read<AudioManagerCubit>();
+    // if (manager.state.musicEnabled) {
+    //   manager.audioDataDelegate.playPreGameMusic();
+    // }
+  }
+
+  @override
+  void dispose() {
+    context.read<AudioManagerCubit>().audioDataDelegate.pausePreGameMusic();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
@@ -32,6 +52,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         titleTextStyle: Theme.of(context).textTheme.headline6,
+        actions: [
+          BlocBuilder<AudioManagerCubit, AudioManagerState>(
+            builder: (context, state) {
+              return IconButton(
+                tooltip: "Toggle Background Music",
+                onPressed: () {
+                  context.read<AudioManagerCubit>().toggleBackgroundMusic();
+                },
+                icon: Icon(
+                  state.musicEnabled
+                      ? Icons.music_note_rounded
+                      : Icons.music_off_rounded,
+                ),
+              );
+            },
+          ),
+          BlocBuilder<AudioManagerCubit, AudioManagerState>(
+            builder: (context, state) {
+              return IconButton(
+                tooltip: "Toggle Game Sounds",
+                onPressed: () {
+                  context.read<AudioManagerCubit>().toggleSounds();
+                },
+                icon: Icon(state.soundsEnabled
+                    ? Icons.touch_app_rounded
+                    : Icons.do_not_touch_rounded),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -49,20 +99,33 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          unawaited(context
+              .read<AudioManagerCubit>()
+              .audioDataDelegate
+              .playComponentSelectedSound());
+
           final cubit = GameSessionCubit(
             configurator,
             size,
             dimension: 3,
             randomize: false,
           );
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) {
-                return GameSessionPage(
-                  gameSessionCubit: cubit,
-                );
-              },
+
+          context
+              .read<AudioManagerCubit>()
+              .audioDataDelegate
+              .pausePreGameMusic();
+
+          unawaited(
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) {
+                  return GameSessionPage(
+                    gameSessionCubit: cubit,
+                  );
+                },
+              ),
             ),
           );
         },

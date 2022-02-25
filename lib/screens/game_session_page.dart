@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_board.dart';
 
 class GameSessionPage extends StatefulWidget {
@@ -19,13 +20,21 @@ class _GameSessionPageState extends State<GameSessionPage> {
   void initState() {
     super.initState();
 
+    final manager = context.read<AudioManagerCubit>();
+    if (manager.state.musicEnabled) {
+      manager.audioDataDelegate.playGameSessionMusic();
+    }
+
+    if (manager.state.soundsEnabled) {
+      // manager.audioDataDelegate.playGameScramblingCountdown();
+    }
     widget.gameSessionCubit.scrambleTiles(50);
   }
 
   @override
   void dispose() {
     widget.gameSessionCubit.dispose();
-
+context.read<AudioManagerCubit>().audioDataDelegate.pauseGameSessionMusic();
     super.dispose();
   }
 

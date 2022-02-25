@@ -69,30 +69,30 @@ class AudioDataDelegate {
   Future<void> playTileMovementSound() async {
     final player =
         players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
-    await player.seek(Duration.zero);
     await player.play();
+    await player.seek(Duration.zero);
   }
 
   Future<void> playPuzzleCompletedSound() async {
     final player =
         players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
-    await player.seek(Duration.zero);
     await player.play();
+    await player.seek(Duration.zero);
   }
 
   Future<void> playComponentHoveredSound() async {
     final player = players.entries
         .firstWhere((entry) => entry.key == "option-click_or_hover")
         .value;
-    await player.seek(Duration.zero);
     await player.play();
+    await player.seek(Duration.zero);
   }
 
   Future<void> playComponentSelectedSound() async {
     final player = players.entries
         .firstWhere((entry) => entry.key == "option-select")
         .value;
-    await player.seek(Duration.zero);
     await player.play();
+    await player.seek(Duration.zero);
   }
 }
