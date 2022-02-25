@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_data_delegate.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/screens/home_page.dart';
+import 'package:puzzlehack/screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Puzzle Hack : by justshreyas',
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        buttonTheme: const ButtonThemeData(
+          buttonColor: Colors.orange,
+          shape: StadiumBorder(),
+        ),
         textTheme: TextTheme(
           headline3: GoogleFonts.workSans(
             fontSize: 36,
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => AudioManagerCubit(AudioDataDelegate()),
-        child: const MyHomePage(title: "Let's play!"),
+        child: const WelcomeScreen(),
       ),
     );
   }

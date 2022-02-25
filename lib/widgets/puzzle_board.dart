@@ -17,7 +17,6 @@ class PuzzleBoard extends StatelessWidget {
       bloc: cubit,
       listener: (context, state) {
         if (state is GameSessionEnded) {
-          
           showDialog(
             context: context,
             builder: (_) {
@@ -38,7 +37,10 @@ class PuzzleBoard extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.popUntil(
-                          context, (route) => route.settings.name == "/");
+                        context,
+                        (route) =>
+                            route.settings.name == "/SelectPuzzleVariantScreen",
+                      );
                     },
                   )
                 ],

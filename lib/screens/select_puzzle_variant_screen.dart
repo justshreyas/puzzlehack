@@ -8,16 +8,20 @@ import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
 import 'package:puzzlehack/view_models/puzzle_view_model.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class SelectPuzzleVariantScreen extends StatefulWidget {
+  final AudioManagerCubit audioManagerCubit;
 
-  final String title;
+  const SelectPuzzleVariantScreen({
+    Key? key,
+    required this.audioManagerCubit,
+  }) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<SelectPuzzleVariantScreen> createState() =>
+      _SelectPuzzleVariantScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
   int dimension = 3;
   int scrambleIterations = 10;
 
@@ -31,15 +35,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    // final manager = context.read<AudioManagerCubit>();
-    // if (manager.state.musicEnabled) {
-    //   manager.audioDataDelegate.playPreGameMusic();
-    // }
+    if (widget.audioManagerCubit.state.musicEnabled) {
+      widget.audioManagerCubit.audioDataDelegate.playPreGameMusic();
+    }
   }
 
   @override
   void dispose() {
-    context.read<AudioManagerCubit>().audioDataDelegate.pausePreGameMusic();
+    widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic();
 
     super.dispose();
   }
@@ -50,15 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("Let's play"),
         titleTextStyle: Theme.of(context).textTheme.headline6,
         actions: [
           BlocBuilder<AudioManagerCubit, AudioManagerState>(
+            bloc: widget.audioManagerCubit,
             builder: (context, state) {
               return IconButton(
                 tooltip: "Toggle Background Music",
                 onPressed: () {
-                  context.read<AudioManagerCubit>().toggleBackgroundMusic();
+                  widget.audioManagerCubit.toggleBackgroundMusic();
                 },
                 icon: Icon(
                   state.musicEnabled
@@ -69,11 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           BlocBuilder<AudioManagerCubit, AudioManagerState>(
+            bloc: widget.audioManagerCubit,
             builder: (context, state) {
               return IconButton(
                 tooltip: "Toggle Game Sounds",
                 onPressed: () {
-                  context.read<AudioManagerCubit>().toggleSounds();
+                  widget.audioManagerCubit.toggleSounds();
                 },
                 icon: Icon(state.soundsEnabled
                     ? Icons.touch_app_rounded
@@ -99,9 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          unawaited(context
-              .read<AudioManagerCubit>()
-              .audioDataDelegate
+          unawaited(widget.audioManagerCubit.audioDataDelegate
               .playComponentSelectedSound());
 
           final cubit = GameSessionCubit(
@@ -111,23 +114,23 @@ class _MyHomePageState extends State<MyHomePage> {
             randomize: false,
           );
 
-         final audioManager= context
-              .read<AudioManagerCubit>()
-              
-             ;audioManager.audioDataDelegate .pausePreGameMusic();
+          widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic();
 
           unawaited(
             Navigator.push(
               context,
               MaterialPageRoute(
+                settings: const RouteSettings(name: "/GameSessionPage"),
                 builder: (_) {
                   return GameSessionPage(
                     gameSessionCubit: cubit,
-                    audioManagerCubit: audioManager,
+                    audioManagerCubit: widget.audioManagerCubit,
                   );
                 },
               ),
-            ),
+            ).then((value) {
+              widget.audioManagerCubit.audioDataDelegate.playPreGameMusic();
+            }),
           );
         },
         tooltip: 'Start the Game',
