@@ -7,6 +7,7 @@ import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
 import 'package:puzzlehack/view_models/puzzle_view_model.dart';
+import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;
@@ -97,6 +98,17 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
               child: Text(
                 "You'll be playing a $dimension x $dimension sliding tile puzzle",
                 style: Theme.of(context).textTheme.headline3,
+              ),
+            ),
+            Row(
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: PuzzleSelectionCard(
+                    titleText: "Difficulty Level = $index",
+                    descriptionText: "Can you solve this puzzle?",
+                  ),
+                ),
               ),
             )
           ],
