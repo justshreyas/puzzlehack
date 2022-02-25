@@ -13,13 +13,42 @@ class PuzzleBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GameSessionCubit, GameSessionState>(
+    return BlocConsumer<GameSessionCubit, GameSessionState>(
       bloc: cubit,
-      builder: (context, state) {
+      listener: (context, state) {
         if (state is GameSessionEnded) {
-          return const Text("Wohoo!");
+          
+          showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text(
+                  "Wohoo!",
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+                content: Text(
+                  "You made it! You solved the puzzle",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                actions: [
+                  FloatingActionButton.extended(
+                    label: Text(
+                      "GO BACK",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    onPressed: () {
+                      Navigator.popUntil(
+                          context, (route) => route.settings.name == "/");
+                    },
+                  )
+                ],
+              );
+            },
+            barrierDismissible: false,
+          );
         }
-
+      },
+      builder: (context, state) {
         return Container(
           color: Colors.grey[300],
           child: Stack(
