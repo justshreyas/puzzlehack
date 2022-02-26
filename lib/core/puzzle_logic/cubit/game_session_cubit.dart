@@ -11,23 +11,18 @@ import 'package:puzzlehack/core/puzzle/tile.dart';
 part 'game_session_state.dart';
 
 class GameSessionCubit extends Cubit<GameSessionState> {
- 
-
   final tileClickedPlayer = AudioPlayer();
   // final backgroundMusicPlayer = AudioPlayer();
   final countdownMusicPlayer = AudioPlayer();
 
-  GameSessionCubit(
-    {
+  GameSessionCubit({
     int dimension = 4,
     bool randomize = true,
   }) : super(
           GameSessionInitial(
-          
-              randomize
-                  ? SlidingTilesPuzzle.random(dimension)
-                  : SlidingTilesPuzzle.solved(dimension),
-             
+            randomize
+                ? SlidingTilesPuzzle.random(dimension)
+                : SlidingTilesPuzzle.solved(dimension),
           ),
         ) {
     // * Set+Load audio assets
@@ -86,10 +81,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       final changedPuzzle = mutablePuzzle.moveTile(candidate);
 
       emit(
-        GameSessionScrambling(
-         changedPuzzle
-        
-        ),
+        GameSessionScrambling(changedPuzzle),
       );
     }
   }
@@ -107,9 +99,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
           emit(GameSessionEnded(state.puzzle));
         } else {
           emit(
-            GameSessionOngoing(
-         changedPuzzle
-            ),
+            GameSessionOngoing(changedPuzzle),
           );
 
           tileClickedPlayer.play();
