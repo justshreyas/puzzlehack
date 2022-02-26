@@ -22,7 +22,6 @@ class _GameSessionPageState extends State<GameSessionPage> {
   void initState() {
     super.initState();
 
-    
     if (widget.audioManagerCubit.state.musicEnabled) {
       widget.audioManagerCubit.audioDataDelegate.playGameSessionMusic();
     }
@@ -45,15 +44,54 @@ class _GameSessionPageState extends State<GameSessionPage> {
     return BlocProvider<AudioManagerCubit>(
       create: (context) => widget.audioManagerCubit,
       child: Scaffold(
-        body: Center(
-          child: BlocBuilder<GameSessionCubit, GameSessionState>(
-            bloc: widget.gameSessionCubit,
-            builder: (context, state) {
-              return PuzzleBoard(
-                cubit: widget.gameSessionCubit,
-              );
-            },
-          ),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            final gameWidget = Expanded(
+              child: Center(
+                child: BlocBuilder<GameSessionCubit, GameSessionState>(
+                  bloc: widget.gameSessionCubit,
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: PuzzleBoard(
+                        cubit: widget.gameSessionCubit,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+
+            final scoreWidget = Expanded(
+                child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Level : E/M/H",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Text(
+                    "Time Elapsed : XXm YYs",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Text(
+                    "Number of moves : ZZ",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ],
+              ),
+            ));
+
+            return constraints.maxWidth > constraints.maxHeight
+                ? Row(
+                    children: [gameWidget, scoreWidget],
+                  )
+                : Column(
+                    children: [gameWidget, scoreWidget],
+                  );
+          },
         ),
       ),
     );

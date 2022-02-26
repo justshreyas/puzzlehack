@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
@@ -53,29 +55,44 @@ class PuzzleBoard extends StatelessWidget {
       },
       builder: (context, state) {
         final availableSize = MediaQuery.of(context).size;
-        final shorterSide = availableSize.height > availableSize.width
-            ? availableSize.width
-            : availableSize.height;
-        final double dimensionSize = shorterSide / state.puzzle.dimension;
-        final size = Size(dimensionSize, dimensionSize);
+
+        final availableExpanse = (min(
+              availableSize.longestSide / 2,
+              availableSize.shortestSide,
+            )) -
+            100;
+
+        final double tileSide = availableExpanse / state.puzzle.dimension;
+
+        final puzzleBoardSize = Size(availableExpanse, availableExpanse);
+        final tileSize = Size(tileSide, tileSide);
 
         return Container(
-          color: Colors.grey[300],
-          child: Stack(
-            children: List.generate(
-              state.puzzle.tiles.length,
-              (index) {
-                final tile = state.puzzle.tiles[index];
-                final tileModel = tileViewModelFrom(tile, size);
-                return SlidingTile(
-                  puzzleTile: tileModel,
-                  animationDurationInMilliseconds:
-                      (state is GameSessionScrambling) ? 50 : 200,
-                  onTap: () {
-                    cubit.handleTileTapped(tile);
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            color: Colors.grey[100],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox.fromSize(
+              size: puzzleBoardSize,
+              child: Stack(
+                children: List.generate(
+                  state.puzzle.tiles.length,
+                  (index) {
+                    final tile = state.puzzle.tiles[index];
+                    final tileModel = tileViewModelFrom(tile, tileSize);
+                    return SlidingTile(
+                      puzzleTile: tileModel,
+                      animationDurationInMilliseconds:
+                          (state is GameSessionScrambling) ? 50 : 200,
+                      onTap: () {
+                        cubit.handleTileTapped(tile);
+                      },
+                    );
                   },
-                );
-              },
+                ),
+              ),
             ),
           ),
         );
