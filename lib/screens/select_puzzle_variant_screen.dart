@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puzzlehack/core/puzzle/tile.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/view_models/puzzle_view_model.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
@@ -19,12 +17,7 @@ class SelectPuzzleVariantScreen extends StatefulWidget {
 }
 
 class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
-  TileDisplayConfig configurator(PuzzleTile tile) {
-    return TileDisplayConfig(
-      DisplayDelegateViewConfigType.text,
-      tile.id,
-    );
-  }
+
 
   @override
   void initState() {
