@@ -7,21 +7,18 @@ import 'package:just_audio/just_audio.dart';
 import 'package:meta/meta.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
-import 'package:puzzlehack/view_models/puzzle_view_model.dart';
 
 part 'game_session_state.dart';
 
 class GameSessionCubit extends Cubit<GameSessionState> {
-  final DisplayDelegateConfigFunction delegateConfigurator;
-  Size size;
+ 
 
   final tileClickedPlayer = AudioPlayer();
   // final backgroundMusicPlayer = AudioPlayer();
   final countdownMusicPlayer = AudioPlayer();
 
   GameSessionCubit(
-    this.delegateConfigurator,
-    this.size, {
+    {
     int dimension = 4,
     bool randomize = true,
   }) : super(
