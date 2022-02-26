@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Puzzle Hack : by justshreyas',
+      debugShowCheckedModeBanner:false,
+
       theme: ThemeData(
         primarySwatch: Colors.orange,
         buttonTheme: const ButtonThemeData(
@@ -26,13 +28,16 @@ class MyApp extends StatelessWidget {
         TextTheme(
   headline1: GoogleFonts.workSans(
     fontSize: 102,
-    fontWeight: FontWeight.w300,
-    letterSpacing: -1.5
+    fontWeight: FontWeight.w400,
+    letterSpacing: -1.5,
+    color: Colors.grey[800]
   ),
   headline2: GoogleFonts.workSans(
     fontSize: 64,
     fontWeight: FontWeight.w300,
-    letterSpacing: -0.5
+    letterSpacing: -0.5,
+        color: Colors.grey[800]
+
   ),
   headline3: GoogleFonts.workSans(
     fontSize: 51,
@@ -74,8 +79,9 @@ class MyApp extends StatelessWidget {
   ),
   button: GoogleFonts.exo(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 1.25
+    fontWeight: FontWeight.w800,
+    letterSpacing: 1.5,
+    color: Colors.white,
   ),
   caption: GoogleFonts.exo(
     fontSize: 12,

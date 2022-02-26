@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
-import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/screens/game_session_page.dart';
 import 'package:puzzlehack/view_models/puzzle_view_model.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
 
@@ -23,9 +19,6 @@ class SelectPuzzleVariantScreen extends StatefulWidget {
 }
 
 class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
-  int dimension = 3;
-  int scrambleIterations = 10;
-
   TileDisplayConfig configurator(PuzzleTile tile) {
     return TileDisplayConfig(
       DisplayDelegateViewConfigType.text,
@@ -50,8 +43,6 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Let's play"),
@@ -93,60 +84,39 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text(
-                "You'll be playing a $dimension x $dimension sliding tile puzzle",
-                style: Theme.of(context).textTheme.headline3,
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Text(
+                    "Select a difficulty level",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ),
               ),
             ),
-            Row(
-              children: List.generate(
-                3,
-                (index) => Expanded(
-                  child: PuzzleSelectionCard(
-                    titleText: "Difficulty Level = $index",
-                    descriptionText: "Can you solve this puzzle?",
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: List.generate(
+                    3,
+                    (index) => Expanded(
+                      child: PuzzleSelectionCard(
+                        audioManagerCubit: widget.audioManagerCubit,
+                        dimension: index == 0
+                            ? 3
+                            : index == 1
+                                ? 4
+                                : 5,
+                      ),
+                    ),
                   ),
                 ),
               ),
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          unawaited(widget.audioManagerCubit.audioDataDelegate
-              .playComponentSelectedSound());
-
-          final cubit = GameSessionCubit(
-            configurator,
-            size,
-            dimension: 3,
-            randomize: false,
-          );
-
-          widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic();
-
-          unawaited(
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                settings: const RouteSettings(name: "/GameSessionPage"),
-                builder: (_) {
-                  return GameSessionPage(
-                    gameSessionCubit: cubit,
-                    audioManagerCubit: widget.audioManagerCubit,
-                  );
-                },
-              ),
-            ).then((value) {
-              widget.audioManagerCubit.audioDataDelegate.playPreGameMusic();
-            }),
-          );
-        },
-        tooltip: 'Start the Game',
-        label: const Text("START GAME"),
       ),
     );
   }
