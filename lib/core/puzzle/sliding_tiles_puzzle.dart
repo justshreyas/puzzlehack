@@ -56,14 +56,14 @@ class SlidingTilesPuzzle {
 extension SlidingTilesPuzzleX on SlidingTilesPuzzle {
   SlidingTilesPuzzle scramble() {
     SlidingTilesPuzzle mutablePuzzle = this;
-    const int numberOfIterations = 1000;
-    final randomizer = Random(numberOfIterations);
+    final int numberOfIterations = dimension * 100;
+    final randomizer = Random();
 
     for (var itr = 0; itr < numberOfIterations; itr++) {
-      final int randomIndex = randomizer.nextInt(dimension * dimension);
+      final int randomIndex = randomizer.nextInt((dimension * dimension) - 1);
       final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
       if (mutablePuzzle.canMoveTile(candidate)) {
-        mutablePuzzle.moveTile(candidate);
+        mutablePuzzle = mutablePuzzle.moveTile(candidate);
       }
     }
 

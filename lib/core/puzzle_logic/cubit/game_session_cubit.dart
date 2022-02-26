@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:meta/meta.dart';
+import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
 
@@ -14,15 +15,14 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   final tileClickedPlayer = AudioPlayer();
   // final backgroundMusicPlayer = AudioPlayer();
   final countdownMusicPlayer = AudioPlayer();
-
+  final PuzzleDifficulty puzzleDifficulty;
   GameSessionCubit({
-    int dimension = 4,
-    bool randomize = true,
+    required this.puzzleDifficulty,
   }) : super(
           GameSessionInitial(
-            randomize
-                ? SlidingTilesPuzzle.random(dimension)
-                : SlidingTilesPuzzle.solved(dimension),
+            puzzleDifficulty.randomizeAtStart
+                ? SlidingTilesPuzzle.random(puzzleDifficulty.puzzleDimension)
+                : SlidingTilesPuzzle.solved(puzzleDifficulty.puzzleDimension),
           ),
         ) {
     // * Set+Load audio assets
@@ -44,15 +44,15 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     countdownMusicPlayer.dispose();
   }
 
-  Future<void> scrambleTiles(int numberOfScrambles) async {
-    countdownMusicPlayer.play();
+  Future<void> onlyScrambleTiles() async {
+    final numberOfScrambles = puzzleDifficulty.numberOfScrambles;
 
     // * Start scrambling
     emit(GameSessionScrambling(state.puzzle));
 
     final randomizer =
-        Random(numberOfScrambles); //TODO : remove seed before perod
-    final int dimension = state.puzzle.dimension;
+        Random();
+    final int dimension = puzzleDifficulty.puzzleDimension;
     const delayDuration = Duration(milliseconds: 60);
 
     for (var itr = 0; itr < numberOfScrambles; itr++) {
@@ -61,9 +61,14 @@ class GameSessionCubit extends Cubit<GameSessionState> {
         tryMovingATile(randomIndex);
       });
     }
+  }
+
+  Future<void> scrambleTiles() async {
+    countdownMusicPlayer.play();
+
+    await onlyScrambleTiles();
 
     // * Stop scrambling and let user play
-
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
@@ -78,7 +83,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
 
     if (mutablePuzzle.canMoveTile(candidate)) {
-      final changedPuzzle = mutablePuzzle.moveTile(candidate);
+      final changedPuzzle = mutablePuzzle.moveTile(candidate);//TODO : Wait here, instead of waiting to call this function
 
       emit(
         GameSessionScrambling(changedPuzzle),

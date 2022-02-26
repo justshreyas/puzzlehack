@@ -1,16 +1,18 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
 
 class PuzzleSelectionCard extends StatefulWidget {
-  final int dimension;
+  final PuzzleDifficulty difficulty;
   final AudioManagerCubit audioManagerCubit;
   const PuzzleSelectionCard({
     Key? key,
-    required this.dimension,
+    required this.difficulty,
     required this.audioManagerCubit,
   }) : super(key: key);
 
@@ -55,8 +57,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                 .playComponentSelectedSound());
 
             final cubit = GameSessionCubit(
-              dimension: widget.dimension,
-              randomize: false,
+              puzzleDifficulty: widget.difficulty,
             );
 
             widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic();
@@ -89,13 +90,13 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "${widget.dimension}×${widget.dimension}",
+                    "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
                     style: isHovering
                         ? Theme.of(context).textTheme.headline3
                         : Theme.of(context).textTheme.headline4,
                   ),
                   Text(
-                    "${(widget.dimension * widget.dimension) - 1} Tiles",
+                    "${(widget.difficulty.puzzleDimension * widget.difficulty.puzzleDimension) - 1} Tiles",
                     style: isHovering
                         ? Theme.of(context).textTheme.subtitle1
                         : Theme.of(context).textTheme.subtitle2,
@@ -113,11 +114,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                       opacity: isHovering ? 1 : 0,
                       duration: const Duration(milliseconds: 20),
                       child: Text(
-                        widget.dimension == 3
-                            ? "EASY"
-                            : widget.dimension == 4
-                                ? "MEDIUM"
-                                : "HARD",
+                        describeEnum(widget.difficulty).toUpperCase(),
                         style: Theme.of(context).textTheme.button,
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
 
@@ -93,15 +94,11 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: List.generate(
-                    3,
+                    PuzzleDifficulty.values.length,
                     (index) => Expanded(
                       child: PuzzleSelectionCard(
                         audioManagerCubit: widget.audioManagerCubit,
-                        dimension: index == 0
-                            ? 3
-                            : index == 1
-                                ? 4
-                                : 5,
+                        difficulty: PuzzleDifficulty.values[index],
                       ),
                     ),
                   ),

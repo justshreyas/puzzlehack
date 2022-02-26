@@ -29,7 +29,7 @@ class _GameSessionPageState extends State<GameSessionPage> {
     if (widget.audioManagerCubit.state.soundsEnabled) {
       // widget.audioManagerCubit.audioDataDelegate.playGameScramblingCountdown();
     }
-    widget.gameSessionCubit.scrambleTiles(50);
+    widget.gameSessionCubit.scrambleTiles();
   }
 
   @override
