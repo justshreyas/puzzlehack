@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
 import 'package:puzzlehack/widgets/sliding_tile.dart';
 
 class PuzzleBoard extends StatelessWidget {
   final GameSessionCubit cubit;
+  final AudioManagerCubit audioManagerCubit;
   const PuzzleBoard({
     Key? key,
     required this.cubit,
+    required this.audioManagerCubit,
   }) : super(key: key);
 
   @override
@@ -60,7 +63,7 @@ class PuzzleBoard extends StatelessWidget {
               availableSize.longestSide / 2,
               availableSize.shortestSide,
             )) -
-            100;
+            152;
 
         final double tileSide = availableExpanse / state.puzzle.dimension;
 
@@ -87,7 +90,12 @@ class PuzzleBoard extends StatelessWidget {
                       animationDurationInMilliseconds:
                           (state is GameSessionScrambling) ? 50 : 200,
                       onTap: () {
-                        cubit.handleTileTapped(tile);
+                        final moved = cubit.handleTileTapped(tile);
+                        if (moved && audioManagerCubit.state.soundsEnabled) {
+                          
+                          audioManagerCubit.audioDataDelegate
+                              .playTileMovementSound();
+                        }
                       },
                     );
                   },

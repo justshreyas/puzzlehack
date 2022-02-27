@@ -12,9 +12,8 @@ import 'package:puzzlehack/core/puzzle/tile.dart';
 part 'game_session_state.dart';
 
 class GameSessionCubit extends Cubit<GameSessionState> {
-  final tileClickedPlayer = AudioPlayer();
-  // final backgroundMusicPlayer = AudioPlayer();
-  final countdownMusicPlayer = AudioPlayer();
+  
+  final countdownMusicPlayer = AudioPlayer(); // TODO : extract out of here
   final PuzzleDifficulty puzzleDifficulty;
   GameSessionCubit({
     required this.puzzleDifficulty,
@@ -25,20 +24,15 @@ class GameSessionCubit extends Cubit<GameSessionState> {
                 : SlidingTilesPuzzle.solved(puzzleDifficulty.puzzleDimension),
           ),
         ) {
-    // * Set+Load audio assets
-    tileClickedPlayer.setAsset("/audio/tile-tapped.mp3");
-    tileClickedPlayer.load();
+  
 
-    // backgroundMusicPlayer.setAsset("/audio/background-music.mp3");
-    // backgroundMusicPlayer.load();
-
+  
     countdownMusicPlayer.setAsset("/audio/countdown-timer.mp3");
     countdownMusicPlayer.load();
   }
 
   void dispose() {
-    tileClickedPlayer.stop();
-    tileClickedPlayer.dispose();
+
 
     countdownMusicPlayer.stop();
     countdownMusicPlayer.dispose();
@@ -50,16 +44,12 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     // * Start scrambling
     emit(GameSessionScrambling(state.puzzle));
 
-    final randomizer =
-        Random();
+    final randomizer = Random();
     final int dimension = puzzleDifficulty.puzzleDimension;
-    const delayDuration = Duration(milliseconds: 60);
 
     for (var itr = 0; itr < numberOfScrambles; itr++) {
       final int randomIndex = randomizer.nextInt((dimension * dimension) - 1);
-      await Future.delayed(delayDuration, () {
-        tryMovingATile(randomIndex);
-      });
+      await tryMovingATile(randomIndex);
     }
   }
 
@@ -78,22 +68,27 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   @visibleForTesting
-  void tryMovingATile(int randomIndex) {
+  Future<void> tryMovingATile(int randomIndex) async {
     final mutablePuzzle = state.puzzle;
     final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
+    const delayDuration = Duration(milliseconds: 60);
 
     if (mutablePuzzle.canMoveTile(candidate)) {
-      final changedPuzzle = mutablePuzzle.moveTile(candidate);//TODO : Wait here, instead of waiting to call this function
+      final changedPuzzle = mutablePuzzle.moveTile(candidate);
 
-      emit(
-        GameSessionScrambling(changedPuzzle),
+      await Future.delayed(
+        delayDuration,
+        () {
+          emit(
+            GameSessionScrambling(changedPuzzle),
+          );
+        },
       );
     }
   }
 
-  void handleTileTapped(PuzzleTile tile) {
-    tileClickedPlayer.pause();
-    tileClickedPlayer.seek(Duration.zero);
+  bool handleTileTapped(PuzzleTile tile) {
+
 
     if (state is GameSessionOngoing || state is GameSessionInitial) {
       final puzzle = state.puzzle;
@@ -106,10 +101,11 @@ class GameSessionCubit extends Cubit<GameSessionState> {
           emit(
             GameSessionOngoing(changedPuzzle),
           );
-
-          tileClickedPlayer.play();
         }
+
+        return true;
       }
     }
+    return false;
   }
 }

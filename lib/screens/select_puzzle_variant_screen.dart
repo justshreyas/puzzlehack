@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
+import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
@@ -38,41 +38,8 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Let's play"),
-        titleTextStyle: Theme.of(context).textTheme.headline6,
-        actions: [
-          BlocBuilder<AudioManagerCubit, AudioManagerState>(
-            bloc: widget.audioManagerCubit,
-            builder: (context, state) {
-              return IconButton(
-                tooltip: "Toggle Background Music",
-                onPressed: () {
-                  widget.audioManagerCubit.toggleBackgroundMusic();
-                },
-                icon: Icon(
-                  state.musicEnabled
-                      ? Icons.music_note_rounded
-                      : Icons.music_off_rounded,
-                ),
-              );
-            },
-          ),
-          BlocBuilder<AudioManagerCubit, AudioManagerState>(
-            bloc: widget.audioManagerCubit,
-            builder: (context, state) {
-              return IconButton(
-                tooltip: "Toggle Game Sounds",
-                onPressed: () {
-                  widget.audioManagerCubit.toggleSounds();
-                },
-                icon: Icon(state.soundsEnabled
-                    ? Icons.touch_app_rounded
-                    : Icons.do_not_touch_rounded),
-              );
-            },
-          ),
-        ],
+      appBar: PuzzleAppBar(
+        audioManagerCubit: widget.audioManagerCubit,
       ),
       body: Center(
         child: Column(

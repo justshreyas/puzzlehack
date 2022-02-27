@@ -69,6 +69,7 @@ class AudioDataDelegate {
   Future<void> playTileMovementSound() async {
     final player =
         players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
+        await player.pause();
     await player.play();
     await player.seek(Duration.zero);
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
+import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_board.dart';
 
 class GameSessionPage extends StatefulWidget {
@@ -44,6 +45,10 @@ class _GameSessionPageState extends State<GameSessionPage> {
     return BlocProvider<AudioManagerCubit>(
       create: (context) => widget.audioManagerCubit,
       child: Scaffold(
+        appBar: PuzzleAppBar(
+          audioManagerCubit: widget.audioManagerCubit,
+          isPlayingGame: true,
+        ),
         body: LayoutBuilder(
           builder: (context, constraints) {
             final gameWidget = Expanded(
@@ -55,6 +60,7 @@ class _GameSessionPageState extends State<GameSessionPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: PuzzleBoard(
                         cubit: widget.gameSessionCubit,
+                        audioManagerCubit: widget.audioManagerCubit,
                       ),
                     );
                   },

@@ -14,12 +14,15 @@ class AudioManagerCubit extends Cubit<AudioManagerState> {
   void toggleBackgroundMusic() {
     final isMusicEnabled = state.musicEnabled;
     final areSoundsEnabled = state.soundsEnabled;
+
     emit(AudioManagerLoaded(!isMusicEnabled, areSoundsEnabled));
   }
 
   void toggleSounds() {
     final isMusicEnabled = state.musicEnabled;
     final areSoundsEnabled = state.soundsEnabled;
+
+   
     emit(AudioManagerLoaded(isMusicEnabled, !areSoundsEnabled));
   }
 }
