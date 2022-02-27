@@ -22,7 +22,10 @@ class AudioManagerCubit extends Cubit<AudioManagerState> {
     final isMusicEnabled = state.musicEnabled;
     final areSoundsEnabled = state.soundsEnabled;
 
-   
     emit(AudioManagerLoaded(isMusicEnabled, !areSoundsEnabled));
+  }
+
+  void dispose() {
+    audioDataDelegate.dispose();
   }
 }

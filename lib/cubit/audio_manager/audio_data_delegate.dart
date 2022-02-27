@@ -41,6 +41,16 @@ class AudioDataDelegate {
 
     return player.play();
   }
+  
+  Future<void> playGameScramblingCountdown() async {
+    final player = players.entries
+        .firstWhere((entry) => entry.key == "countdown-timer")
+        .value;
+
+    player.setLoopMode(LoopMode.one);
+
+    return player.play();
+  }
 
   Future<void> pausePreGameMusic() async {
     return players.entries

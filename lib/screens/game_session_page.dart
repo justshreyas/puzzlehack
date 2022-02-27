@@ -28,14 +28,13 @@ class _GameSessionPageState extends State<GameSessionPage> {
     }
 
     if (widget.audioManagerCubit.state.soundsEnabled) {
-      // widget.audioManagerCubit.audioDataDelegate.playGameScramblingCountdown();
+      widget.audioManagerCubit.audioDataDelegate.playGameScramblingCountdown();
     }
     widget.gameSessionCubit.scrambleTiles();
   }
 
   @override
   void dispose() {
-    widget.gameSessionCubit.dispose();
     widget.audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
     super.dispose();
   }
@@ -53,8 +52,11 @@ class _GameSessionPageState extends State<GameSessionPage> {
           builder: (context, constraints) {
             final gameWidget = Expanded(
               child: Center(
-                child: BlocBuilder<GameSessionCubit, GameSessionState>(
+                child: BlocConsumer<GameSessionCubit, GameSessionState>(
                   bloc: widget.gameSessionCubit,
+                  listener: (context,state){
+                    // TODO : Extract alert dialog here
+                  },
                   builder: (context, state) {
                     return Padding(
                       padding: const EdgeInsets.all(20.0),

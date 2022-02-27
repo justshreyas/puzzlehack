@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:meta/meta.dart';
 import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
@@ -13,7 +12,6 @@ part 'game_session_state.dart';
 
 class GameSessionCubit extends Cubit<GameSessionState> {
   
-  final countdownMusicPlayer = AudioPlayer(); // TODO : extract out of here
   final PuzzleDifficulty puzzleDifficulty;
   GameSessionCubit({
     required this.puzzleDifficulty,
@@ -23,20 +21,9 @@ class GameSessionCubit extends Cubit<GameSessionState> {
                 ? SlidingTilesPuzzle.random(puzzleDifficulty.puzzleDimension)
                 : SlidingTilesPuzzle.solved(puzzleDifficulty.puzzleDimension),
           ),
-        ) {
-  
-
-  
-    countdownMusicPlayer.setAsset("/audio/countdown-timer.mp3");
-    countdownMusicPlayer.load();
-  }
-
-  void dispose() {
+        ) ;
 
 
-    countdownMusicPlayer.stop();
-    countdownMusicPlayer.dispose();
-  }
 
   Future<void> onlyScrambleTiles() async {
     final numberOfScrambles = puzzleDifficulty.numberOfScrambles;
@@ -54,7 +41,6 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   Future<void> scrambleTiles() async {
-    countdownMusicPlayer.play();
 
     await onlyScrambleTiles();
 
@@ -71,7 +57,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   Future<void> tryMovingATile(int randomIndex) async {
     final mutablePuzzle = state.puzzle;
     final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
-    const delayDuration = Duration(milliseconds: 60);
+    const delayDuration = Duration(milliseconds: 150);
 
     if (mutablePuzzle.canMoveTile(candidate)) {
       final changedPuzzle = mutablePuzzle.moveTile(candidate);
