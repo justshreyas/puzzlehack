@@ -11,7 +11,6 @@ import 'package:puzzlehack/core/puzzle/tile.dart';
 part 'game_session_state.dart';
 
 class GameSessionCubit extends Cubit<GameSessionState> {
-  
   final PuzzleDifficulty puzzleDifficulty;
   GameSessionCubit({
     required this.puzzleDifficulty,
@@ -21,9 +20,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
                 ? SlidingTilesPuzzle.random(puzzleDifficulty.puzzleDimension)
                 : SlidingTilesPuzzle.solved(puzzleDifficulty.puzzleDimension),
           ),
-        ) ;
-
-
+        );
 
   Future<void> onlyScrambleTiles() async {
     final numberOfScrambles = puzzleDifficulty.numberOfScrambles;
@@ -41,7 +38,6 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   Future<void> scrambleTiles() async {
-
     await onlyScrambleTiles();
 
     // * Stop scrambling and let user play
@@ -65,33 +61,31 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       await Future.delayed(
         delayDuration,
         () {
-          emit(
-            GameSessionScrambling(changedPuzzle),
-          );
+            emit(
+              GameSessionScrambling(changedPuzzle),
+            );
         },
       );
     }
   }
 
   bool handleTileTapped(PuzzleTile tile) {
-
-
     if (state is GameSessionOngoing || state is GameSessionInitial) {
       final puzzle = state.puzzle;
       if (puzzle.canMoveTile(tile)) {
         final changedPuzzle = state.puzzle.moveTile(tile);
 
-        if (changedPuzzle.isSolved) {
-          emit(GameSessionEnded(state.puzzle));
-        } else {
-          emit(
-            GameSessionOngoing(changedPuzzle),
-          );
-        }
+        emit(
+          GameSessionOngoing(changedPuzzle),
+        );
 
         return true;
       }
     }
     return false;
+  }
+
+  void notifyPuzzleCompleted() {
+    emit(GameSessionEnded(state.puzzle));
   }
 }

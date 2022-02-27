@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
@@ -54,8 +55,50 @@ class _GameSessionPageState extends State<GameSessionPage> {
               child: Center(
                 child: BlocConsumer<GameSessionCubit, GameSessionState>(
                   bloc: widget.gameSessionCubit,
-                  listener: (context,state){
-                    // TODO : Extract alert dialog here
+                  listener: (context, state) {
+                    if (state is GameSessionOngoing && state.puzzle.isSolved) {
+                      widget.gameSessionCubit.notifyPuzzleCompleted();
+                    }
+
+                    if (state is GameSessionEnded) {
+                      widget.audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
+                      
+                      widget.audioManagerCubit.audioDataDelegate
+                          .playPuzzleCompletedSound();
+
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text(
+                              "Wohoo!",
+                              style: Theme.of(context).textTheme.headline3,
+                            ),
+                            content: Text(
+                              "You made it! You solved the puzzle",
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                            actions: [
+                              FloatingActionButton.extended(
+                                label: Text(
+                                  "GO BACK",
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                onPressed: () {
+                                  Navigator.popUntil(
+                                    context,
+                                    (route) =>
+                                        route.settings.name ==
+                                        "/SelectPuzzleVariantScreen",
+                                  );
+                                },
+                              )
+                            ],
+                          );
+                        },
+                        barrierDismissible: false,
+                      );
+                    }
                   },
                   builder: (context, state) {
                     return Padding(

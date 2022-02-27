@@ -19,43 +19,8 @@ class PuzzleBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<GameSessionCubit, GameSessionState>(
+    return BlocBuilder<GameSessionCubit, GameSessionState>(
       bloc: cubit,
-      listener: (context, state) {
-        if (state is GameSessionEnded) {
-          showDialog(
-            context: context,
-            builder: (_) {
-              return AlertDialog(
-                title: Text(
-                  "Wohoo!",
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-                content: Text(
-                  "You made it! You solved the puzzle",
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                actions: [
-                  FloatingActionButton.extended(
-                    label: Text(
-                      "GO BACK",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    onPressed: () {
-                      Navigator.popUntil(
-                        context,
-                        (route) =>
-                            route.settings.name == "/SelectPuzzleVariantScreen",
-                      );
-                    },
-                  )
-                ],
-              );
-            },
-            barrierDismissible: false,
-          );
-        }
-      },
       builder: (context, state) {
         final availableSize = MediaQuery.of(context).size;
 
@@ -92,7 +57,6 @@ class PuzzleBoard extends StatelessWidget {
                       onTap: () {
                         final moved = cubit.handleTileTapped(tile);
                         if (moved && audioManagerCubit.state.soundsEnabled) {
-                          
                           audioManagerCubit.audioDataDelegate
                               .playTileMovementSound();
                         }

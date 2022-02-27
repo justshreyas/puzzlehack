@@ -41,15 +41,16 @@ class AudioDataDelegate {
 
     return player.play();
   }
-  
+
   Future<void> playGameScramblingCountdown() async {
     final player = players.entries
         .firstWhere((entry) => entry.key == "countdown-timer")
         .value;
 
-    player.setLoopMode(LoopMode.one);
+    await player.pause();
+    await player.seek(Duration.zero);
 
-    return player.play();
+    await player.play();
   }
 
   Future<void> pausePreGameMusic() async {
@@ -79,31 +80,42 @@ class AudioDataDelegate {
   Future<void> playTileMovementSound() async {
     final player =
         players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
-        await player.pause();
-    await player.play();
+
+    await player.pause();
     await player.seek(Duration.zero);
+
+    await player.play();
   }
 
   Future<void> playPuzzleCompletedSound() async {
     final player =
-        players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
-    await player.play();
+        players.entries.firstWhere((entry) => entry.key == "puzzle-solved").value;
+
+    await player.pause();
     await player.seek(Duration.zero);
+
+    await player.play();
   }
 
   Future<void> playComponentHoveredSound() async {
     final player = players.entries
         .firstWhere((entry) => entry.key == "option-click_or_hover")
         .value;
-    await player.play();
+
+    await player.pause();
     await player.seek(Duration.zero);
+
+    await player.play();
   }
 
   Future<void> playComponentSelectedSound() async {
     final player = players.entries
         .firstWhere((entry) => entry.key == "option-select")
         .value;
-    await player.play();
+
+    await player.pause();
     await player.seek(Duration.zero);
+
+    await player.play();
   }
 }
