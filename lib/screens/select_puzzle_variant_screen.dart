@@ -58,7 +58,7 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Row(
                   children: List.generate(
                     PuzzleDifficulty.values.length,

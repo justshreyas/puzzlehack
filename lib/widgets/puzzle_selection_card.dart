@@ -23,6 +23,10 @@ class PuzzleSelectionCard extends StatefulWidget {
 class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
   bool isHovering = false;
 
+  static const animationDuration1 = Duration(milliseconds: 100);
+  static const animationDuration2 = Duration(milliseconds: 20);
+  static const animationCurve = Curves.easeIn;
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +51,8 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
       onEnter: onEnter,
       onExit: onExit,
       child: AnimatedPadding(
-        duration: const Duration(milliseconds: 20),
+        duration: animationDuration1,
+        curve: animationCurve,
         padding: isHovering
             ? const EdgeInsets.all(0)
             : const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -80,7 +85,8 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             );
           },
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 20),
+            duration: animationDuration1,
+            curve: animationCurve,
             color: isHovering ? Colors.orange[200] : Colors.grey[100],
             padding: isHovering
                 ? const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
@@ -103,9 +109,12 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                   ),
                   const SizedBox(height: 20),
                   AnimatedContainer(
-                    duration: const Duration(milliseconds: 20),
+                    duration: animationDuration2,
+                    curve: animationCurve,
                     decoration: BoxDecoration(
-                      color: isHovering ? Colors.orange : Colors.transparent,
+                      color: isHovering
+                          ? Colors.orange
+                          : Colors.orange.withOpacity(0),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                     ),
                     padding: const EdgeInsets.symmetric(

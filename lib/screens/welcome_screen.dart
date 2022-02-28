@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/select_puzzle_variant_screen.dart';
+import 'package:puzzlehack/widgets/puzzle_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -27,14 +28,7 @@ class WelcomeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline4,
               ),
               const SizedBox(height: 20),
-              MaterialButton(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                color: Theme.of(context).primaryColor,
-                child: Text(
-                  "PLAY",
-                  style: Theme.of(context).textTheme.button,
-                ),
+              PuzzleButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -47,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-              )
+              ),
             ],
           ),
         ),
