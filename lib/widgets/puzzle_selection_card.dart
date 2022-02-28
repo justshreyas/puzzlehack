@@ -87,7 +87,10 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
           child: AnimatedContainer(
             duration: animationDuration1,
             curve: animationCurve,
-            color: isHovering ? Colors.orange[200] : Colors.grey[100],
+            decoration: BoxDecoration(
+              color: isHovering ? Colors.orange[200] : Colors.grey[100],
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+            ),
             padding: isHovering
                 ? const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
                 : const EdgeInsets.all(0),
@@ -95,33 +98,50 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
-                    style: isHovering
-                        ? Theme.of(context).textTheme.headline3
-                        : Theme.of(context).textTheme.headline4,
-                  ),
-                  Text(
-                    "${(widget.difficulty.puzzleDimension * widget.difficulty.puzzleDimension) - 1} Tiles",
-                    style: isHovering
-                        ? Theme.of(context).textTheme.subtitle1
-                        : Theme.of(context).textTheme.subtitle2,
-                  ),
-                  const SizedBox(height: 20),
-                  AnimatedContainer(
+                  AnimatedSwitcher(
                     duration: animationDuration2,
-                    curve: animationCurve,
-                    decoration: BoxDecoration(
-                      color: isHovering
-                          ? Colors.orange
-                          : Colors.orange.withOpacity(0),
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    child: isHovering
+                        ? Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
+                                style: isHovering
+                                    ? Theme.of(context).textTheme.headline3
+                                    : Theme.of(context).textTheme.headline4,
+                              ),
+                              Text(
+                                "${(widget.difficulty.puzzleDimension * widget.difficulty.puzzleDimension) - 1} Tiles",
+                                style: isHovering
+                                    ? Theme.of(context).textTheme.subtitle1
+                                    : Theme.of(context).textTheme.subtitle2,
+                              ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
+                    transitionBuilder: (child, animation) => FadeTransition(
+                      opacity: animation,
+                      child: child,
                     ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: AnimatedOpacity(
-                      opacity: isHovering ? 1 : 0,
-                      duration: const Duration(milliseconds: 20),
+                  ),
+                  AnimatedPadding(
+                    duration: animationDuration1,
+                    padding: isHovering
+                        ? const EdgeInsets.only(top: 30.0)
+                        : const EdgeInsets.all(0.0),
+                    child: AnimatedContainer(
+                      duration: animationDuration2,
+                      curve: animationCurve,
+                      decoration: BoxDecoration(
+                        color: isHovering
+                            ? Colors.orange
+                            : Colors.orange.withOpacity(0.6),
+                      ),
+                      padding: isHovering
+                          ? const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10)
+                          : const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
                       child: Text(
                         describeEnum(widget.difficulty).toUpperCase(),
                         style: Theme.of(context).textTheme.button,

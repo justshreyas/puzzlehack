@@ -18,8 +18,6 @@ class SelectPuzzleVariantScreen extends StatefulWidget {
 }
 
 class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
-
-
   @override
   void initState() {
     super.initState();
@@ -46,7 +44,9 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: Center(
+              flex: 4,
+              child: Align(
+                alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Text(
@@ -57,15 +57,22 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
               ),
             ),
             Expanded(
+              flex: 8,
               child: Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(30.0)
+                    .add(const EdgeInsets.symmetric(horizontal: 150)),//TODO : Layout builder + adjustments
                 child: Row(
                   children: List.generate(
                     PuzzleDifficulty.values.length,
                     (index) => Expanded(
-                      child: PuzzleSelectionCard(
-                        audioManagerCubit: widget.audioManagerCubit,
-                        difficulty: PuzzleDifficulty.values[index],
+                      child: Center(
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: PuzzleSelectionCard(
+                            audioManagerCubit: widget.audioManagerCubit,
+                            difficulty: PuzzleDifficulty.values[index],
+                          ),
+                        ),
                       ),
                     ),
                   ),
