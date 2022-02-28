@@ -61,8 +61,9 @@ class _GameSessionPageState extends State<GameSessionPage> {
                     }
 
                     if (state is GameSessionEnded) {
-                      widget.audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
-                      
+                      widget.audioManagerCubit.audioDataDelegate
+                          .pauseGameSessionMusic();
+
                       widget.audioManagerCubit.audioDataDelegate
                           .playPuzzleCompletedSound();
 
@@ -135,13 +136,24 @@ class _GameSessionPageState extends State<GameSessionPage> {
               ),
             ));
 
-            return constraints.maxWidth > constraints.maxHeight
-                ? Row(
-                    children: [gameWidget, scoreWidget],
-                  )
-                : Column(
-                    children: [gameWidget, scoreWidget],
-                  );
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 50),
+              transitionBuilder: (child, animation) =>
+                  FadeTransition(opacity: animation, child: child),
+              child: constraints.maxWidth > constraints.maxHeight
+                  ? Row(
+                      children: [
+                        gameWidget,
+                        scoreWidget,
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        gameWidget,
+                        scoreWidget,
+                      ],
+                    ),
+            );
           },
         ),
       ),
