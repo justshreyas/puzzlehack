@@ -36,31 +36,34 @@ class _PuzzleButtonState extends State<PuzzleButton> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: onEnter,
-      onExit: onExit,
-      cursor:SystemMouseCursors.click,
-      child: AnimatedPadding(
-        duration: animationDuration,
-        curve: animationCurve,
-        padding: isHovering
-            ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0)
-            : const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0),
-        child: Container(
-          decoration: BoxDecoration(
-            // borderRadius: const BorderRadius.all(Radius.circular(50)),
-            color: Theme.of(context).primaryColor,
-         
-          ),
-          child: AnimatedPadding(
-            duration: animationDuration,
-            curve: animationCurve,
-            padding: isHovering
-                ? const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0)
-                : const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0),
-            child: Text(
-              widget.text,
-              style: Theme.of(context).textTheme.button,
+    return AnimatedPadding(
+      duration: animationDuration,
+      curve: animationCurve,
+      padding: isHovering
+          ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0)
+          : const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0),
+      child: MouseRegion(
+        onEnter: onEnter,
+        onExit: onExit,
+        cursor:SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          child: Container(
+            decoration: BoxDecoration(
+              // borderRadius: const BorderRadius.all(Radius.circular(50)),
+              color: Theme.of(context).primaryColor,
+           
+            ),
+            child: AnimatedPadding(
+              duration: animationDuration,
+              curve: animationCurve,
+              padding: isHovering
+                  ? const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0)
+                  : const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0),
+              child: Text(
+                widget.text,
+                style: Theme.of(context).textTheme.button,
+              ),
             ),
           ),
         ),
