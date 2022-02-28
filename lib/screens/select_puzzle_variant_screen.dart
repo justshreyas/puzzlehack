@@ -59,23 +59,40 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
             Expanded(
               flex: 8,
               child: Padding(
-                padding: const EdgeInsets.all(30.0)
-                    .add(const EdgeInsets.symmetric(horizontal: 150)),//TODO : Layout builder + adjustments
-                child: Row(
-                  children: List.generate(
-                    PuzzleDifficulty.values.length,
-                    (index) => Expanded(
-                      child: Center(
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: PuzzleSelectionCard(
-                            audioManagerCubit: widget.audioManagerCubit,
-                            difficulty: PuzzleDifficulty.values[index],
+                padding: const EdgeInsets.all(30.0).add(
+                    const EdgeInsets.symmetric(
+                        horizontal: 150)), //TODO adjustments
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final bool isLandscape =
+                        constraints.maxWidth > constraints.maxHeight;
+                    final List<Widget> selectionCards = List.generate(
+                      PuzzleDifficulty.values.length,
+                      (index) => Expanded(
+                        child: Center(
+                          child: AspectRatio(
+                            aspectRatio: 2,
+                            child: PuzzleSelectionCard(
+                              audioManagerCubit: widget.audioManagerCubit,
+                              difficulty: PuzzleDifficulty.values[index],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 50),
+                      transitionBuilder: (child, animation) =>
+                          FadeTransition(opacity: animation, child: child),
+                      child: isLandscape
+                          ? Row(
+                              children: selectionCards,
+                            )
+                          : Column(
+                              children: selectionCards,
+                            ),
+                    );
+                  },
                 ),
               ),
             )
