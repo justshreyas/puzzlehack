@@ -1,0 +1,100 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
+
+final TextTheme largeDisplayTextTheme = TextTheme(
+  headline1: GoogleFonts.workSans(
+      fontSize: 102,
+      fontWeight: FontWeight.w400,
+      letterSpacing: -1.5,
+      color: Colors.grey[800]),
+  headline2: GoogleFonts.workSans(fontSize: 51, fontWeight: FontWeight.w400),
+  headline3: GoogleFonts.workSans(
+      fontSize: 36, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  headline4: GoogleFonts.exo(
+      fontSize: 27, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  subtitle1: GoogleFonts.workSans(
+      fontSize: 21, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+  subtitle2: GoogleFonts.workSans(
+      fontSize: 18, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+  bodyText1: GoogleFonts.exo(
+      fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+  bodyText2: GoogleFonts.exo(
+      fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  button: GoogleFonts.exo(
+    fontSize: 14,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 1.5,
+    color: Colors.white,
+  ),
+);
+
+final TextTheme mediumDisplayTextTheme = TextTheme(
+  headline1: GoogleFonts.workSans(
+      fontSize: 51,
+      fontWeight: FontWeight.w400,
+      letterSpacing: -1.5,
+      color: Colors.grey[800]),
+  headline2: GoogleFonts.workSans(fontSize: 36, fontWeight: FontWeight.w400),
+  headline3: GoogleFonts.workSans(
+      fontSize: 24, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  headline4: GoogleFonts.exo(
+      fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  subtitle1: GoogleFonts.workSans(
+      fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+  subtitle2: GoogleFonts.workSans(
+      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+  bodyText1: GoogleFonts.exo(
+      fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+  bodyText2: GoogleFonts.exo(
+      fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  button: GoogleFonts.exo(
+    fontSize: 9,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 1.5,
+    color: Colors.white,
+  ),
+);
+
+final TextTheme smallDisplayTextTheme = TextTheme(
+  headline1: GoogleFonts.workSans(
+      fontSize: 36,
+      fontWeight: FontWeight.w400,
+      letterSpacing: -1.5,
+      color: Colors.grey[800]),
+  headline2: GoogleFonts.workSans(fontSize: 24, fontWeight: FontWeight.w400),
+  headline3: GoogleFonts.workSans(
+      fontSize: 21, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  headline4: GoogleFonts.exo(
+      fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  subtitle1: GoogleFonts.workSans(
+      fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+  subtitle2: GoogleFonts.workSans(
+      fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+  bodyText1: GoogleFonts.exo(
+      fontSize: 8, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+  bodyText2: GoogleFonts.exo(
+      fontSize: 7, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  button: GoogleFonts.exo(
+    fontSize: 7,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 1.5,
+    color: Colors.white,
+  ),
+);
+
+extension SizeAwareTextThemeX on BuildContext {
+  TextTheme get sizeAwareTextTheme {
+    final displaySize = MediaQuery.of(this).size.displaySize;
+    switch (displaySize) {
+      case DisplaySize.large:
+        return largeDisplayTextTheme;
+      case DisplaySize.medium:
+        return mediumDisplayTextTheme;
+
+      case DisplaySize.small:
+      default:
+        return smallDisplayTextTheme;
+    }
+  }
+}
