@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleButton extends StatefulWidget {
   final String text;
@@ -45,14 +46,13 @@ class _PuzzleButtonState extends State<PuzzleButton> {
       child: MouseRegion(
         onEnter: onEnter,
         onExit: onExit,
-        cursor:SystemMouseCursors.click,
+        cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: widget.onPressed,
           child: Container(
             decoration: BoxDecoration(
               // borderRadius: const BorderRadius.all(Radius.circular(50)),
               color: Theme.of(context).primaryColor,
-           
             ),
             child: AnimatedPadding(
               duration: animationDuration,
@@ -60,9 +60,12 @@ class _PuzzleButtonState extends State<PuzzleButton> {
               padding: isHovering
                   ? const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0)
                   : const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0),
-              child: Text(
-                widget.text,
-                style: Theme.of(context).textTheme.button,
+              child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 50),
+                style: context.sizeAwareTextTheme.button!,
+                child: Text(
+                  widget.text,
+                ),
               ),
             ),
           ),

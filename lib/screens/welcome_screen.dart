@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/select_puzzle_variant_screen.dart';
 import 'package:puzzlehack/widgets/puzzle_button.dart';
+import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -17,15 +18,21 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                "Flutter Puzzle Hack",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline1,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.sizeAwareTextTheme.headline1!,
+                child: const Text(
+                  "Flutter Puzzle Hack",
+                  textAlign: TextAlign.center,
+                ),
               ),
-              Text(
-                "a submission\nby justshreyas",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.sizeAwareTextTheme.headline3!,
+                child: const Text(
+                  "a submission\nby justshreyas",
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: 20),
               PuzzleButton(
