@@ -4,23 +4,47 @@ import 'package:puzzlehack/widgets/utils/display_size.dart';
 
 final TextTheme largeDisplayTextTheme = TextTheme(
   headline1: GoogleFonts.workSans(
-      fontSize: 102,
-      fontWeight: FontWeight.w400,
-      letterSpacing: -1.5,
-      color: Colors.grey[800]),
-  headline2: GoogleFonts.workSans(fontSize: 51, fontWeight: FontWeight.w400),
+    fontSize: 102,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -1.5,
+    color: Colors.grey[800],
+  ),
+  headline2: GoogleFonts.workSans(
+    fontSize: 51,
+    fontWeight: FontWeight.w400,
+  ),
   headline3: GoogleFonts.workSans(
-      fontSize: 36, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+    fontSize: 36,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+    height: 1.1,
+  ),
   headline4: GoogleFonts.workSans(
-      fontSize: 27, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 27,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 21, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+    fontSize: 21,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.15,
+    color: Colors.black87,
+  ),
   subtitle2: GoogleFonts.workSans(
-      fontSize: 18, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.1,
+  ),
   bodyText1: GoogleFonts.workSans(
-      fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+  ),
   bodyText2: GoogleFonts.workSans(
-      fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   button: GoogleFonts.workSans(
     fontSize: 21,
     fontWeight: FontWeight.w600,
@@ -31,23 +55,47 @@ final TextTheme largeDisplayTextTheme = TextTheme(
 
 final TextTheme mediumDisplayTextTheme = TextTheme(
   headline1: GoogleFonts.workSans(
-      fontSize: 51,
-      fontWeight: FontWeight.w400,
-      letterSpacing: -1.5,
-      color: Colors.grey[800]),
-  headline2: GoogleFonts.workSans(fontSize: 36, fontWeight: FontWeight.w400),
+    fontSize: 51,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -1.5,
+    color: Colors.grey[800],
+  ),
+  headline2: GoogleFonts.workSans(
+    fontSize: 36,
+    fontWeight: FontWeight.w400,
+  ),
   headline3: GoogleFonts.workSans(
-      fontSize: 24, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+    height: 1.1,
+  ),
   headline4: GoogleFonts.workSans(
-      fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 15, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.15,
+    color: Colors.black87,
+  ),
   subtitle2: GoogleFonts.workSans(
-      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.1,
+  ),
   bodyText1: GoogleFonts.workSans(
-      fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+  ),
   bodyText2: GoogleFonts.workSans(
-      fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 9,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   button: GoogleFonts.workSans(
     fontSize: 15,
     fontWeight: FontWeight.w600,
@@ -58,23 +106,47 @@ final TextTheme mediumDisplayTextTheme = TextTheme(
 
 final TextTheme smallDisplayTextTheme = TextTheme(
   headline1: GoogleFonts.workSans(
-      fontSize: 36,
-      fontWeight: FontWeight.w400,
-      letterSpacing: -1.5,
-      color: Colors.grey[800]),
-  headline2: GoogleFonts.workSans(fontSize: 24, fontWeight: FontWeight.w400),
+    fontSize: 36,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -1.5,
+    color: Colors.grey[800],
+  ),
+  headline2: GoogleFonts.workSans(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+  ),
   headline3: GoogleFonts.workSans(
-      fontSize: 21, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+    fontSize: 21,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+    height: 1.1,
+  ),
   headline4: GoogleFonts.workSans(
-      fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.15,
+    color: Colors.black87,
+  ),
   subtitle2: GoogleFonts.workSans(
-      fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.1,
+  ),
   bodyText1: GoogleFonts.workSans(
-      fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    fontSize: 9,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+  ),
   bodyText2: GoogleFonts.workSans(
-      fontSize: 8, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    fontSize: 8,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.25,
+  ),
   button: GoogleFonts.workSans(
     fontSize: 12,
     fontWeight: FontWeight.w600,

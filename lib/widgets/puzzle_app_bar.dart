@@ -9,13 +9,17 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PuzzleAppBar({
     Key? key,
     required this.audioManagerCubit,
-     this.isPlayingGame=false,
+    this.isPlayingGame = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text("Let's play"),
+      backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(
+        color: Colors.orange,
+      ),
+      elevation: 0,
       titleTextStyle: Theme.of(context).textTheme.headline6,
       actions: [
         BlocBuilder<AudioManagerCubit, AudioManagerState>(
@@ -27,14 +31,12 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (!state.musicEnabled) {
                   if (isPlayingGame) {
                     audioManagerCubit.audioDataDelegate.playGameSessionMusic();
-                  } else  {
+                  } else {
                     audioManagerCubit.audioDataDelegate.playPreGameMusic();
                   }
-                }else{
-                                      audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
-                                                          audioManagerCubit.audioDataDelegate.pausePreGameMusic();
-
-
+                } else {
+                  audioManagerCubit.audioDataDelegate.pauseGameSessionMusic();
+                  audioManagerCubit.audioDataDelegate.pausePreGameMusic();
                 }
                 audioManagerCubit.toggleBackgroundMusic();
               },

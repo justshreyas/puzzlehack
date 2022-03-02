@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
+import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SlidingTile extends StatelessWidget {
   final PuzzleTileViewModel puzzleTile;
@@ -52,9 +53,12 @@ class SimplePuzzleTile extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
           child: Center(
-            child: Text(
-              text,
-              style: Theme.of(context).textTheme.headline4,
+            child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.sizeAwareTextTheme.subtitle1!,
+              child: Text(
+                text,
+              ),
             ),
           ),
         ),

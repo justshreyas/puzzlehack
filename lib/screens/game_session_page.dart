@@ -5,6 +5,7 @@ import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_board.dart';
+import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class GameSessionPage extends StatefulWidget {
   final GameSessionCubit gameSessionCubit;
@@ -120,17 +121,26 @@ class _GameSessionPageState extends State<GameSessionPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Level : E/M/H",
-                    style: Theme.of(context).textTheme.headline6,
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 150),
+                    style: context.sizeAwareTextTheme.headline4!,
+                    child: const Text(
+                      "Level : E/M/H",
+                    ),
                   ),
-                  Text(
-                    "Time Elapsed : XXm YYs",
-                    style: Theme.of(context).textTheme.headline6,
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 150),
+                    style: context.sizeAwareTextTheme.headline4!,
+                    child:const Text(
+                      "Time Elapsed : XXm YYs",
+                    ),
                   ),
-                  Text(
-                    "Number of moves : ZZ",
-                    style: Theme.of(context).textTheme.headline6,
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 150),
+                    style: context.sizeAwareTextTheme.headline4!,
+                    child:const Text(
+                      "Number of moves : ZZ",
+                    ),
                   ),
                 ],
               ),

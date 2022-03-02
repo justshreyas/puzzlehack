@@ -3,6 +3,7 @@ import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
+import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;
@@ -49,9 +50,12 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: Text(
-                    "Select a difficulty level",
-                    style: Theme.of(context).textTheme.headline1,
+                  child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.sizeAwareTextTheme.headline1!,
+                    child: const Text(
+                      "Select a difficulty level",
+                    ),
                   ),
                 ),
               ),
