@@ -3,7 +3,6 @@ import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
@@ -37,7 +36,6 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
 
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PuzzleAppBar(
@@ -67,7 +65,7 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
               flex: 8,
               child: Padding(
                 padding: const EdgeInsets.all(30.0).add(
-                     EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                         horizontal: 50)), //TODO adjustments
                 child: LayoutBuilder(
                   builder: (context, constraints) {

@@ -61,9 +61,9 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       await Future.delayed(
         delayDuration,
         () {
-            emit(
-              GameSessionScrambling(changedPuzzle),
-            );
+          emit(
+            GameSessionScrambling(changedPuzzle),
+          );
         },
       );
     }

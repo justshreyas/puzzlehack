@@ -88,8 +88,9 @@ class AudioDataDelegate {
   }
 
   Future<void> playPuzzleCompletedSound() async {
-    final player =
-        players.entries.firstWhere((entry) => entry.key == "puzzle-solved").value;
+    final player = players.entries
+        .firstWhere((entry) => entry.key == "puzzle-solved")
+        .value;
 
     await player.pause();
     await player.seek(Duration.zero);

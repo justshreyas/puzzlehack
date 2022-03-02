@@ -17,6 +17,5 @@ extension PuzzleDifficultyX on PuzzleDifficulty {
           ? 4
           : 5;
 
-  bool get randomizeAtStart =>
-      this != PuzzleDifficulty.easy ;
+  bool get randomizeAtStart => this != PuzzleDifficulty.easy;
 }
