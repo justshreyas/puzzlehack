@@ -16,9 +16,6 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      iconTheme: const IconThemeData(
-        color: Colors.orange,
-      ),
       elevation: 0,
       titleTextStyle: Theme.of(context).textTheme.headline6,
       actions: [

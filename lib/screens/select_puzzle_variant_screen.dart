@@ -3,6 +3,7 @@ import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
@@ -36,7 +37,9 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PuzzleAppBar(
         audioManagerCubit: widget.audioManagerCubit,
       ),
@@ -51,8 +54,8 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 150),
-                style: context.sizeAwareTextTheme.headline1!,
+                    duration: const Duration(milliseconds: 150),
+                    style: context.sizeAwareTextTheme.headline1!,
                     child: const Text(
                       "Select a difficulty level",
                     ),
@@ -64,8 +67,8 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
               flex: 8,
               child: Padding(
                 padding: const EdgeInsets.all(30.0).add(
-                    const EdgeInsets.symmetric(
-                        horizontal: 150)), //TODO adjustments
+                     EdgeInsets.symmetric(
+                        horizontal: 50)), //TODO adjustments
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final bool isLandscape =

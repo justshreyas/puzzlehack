@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Puzzle Hack : by justshreyas',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.orange,
+      ),
       home: BlocProvider(
         create: (context) => AudioManagerCubit(AudioDataDelegate()),
         child: const WelcomeScreen(),

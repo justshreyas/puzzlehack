@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SlidingTile extends StatelessWidget {
@@ -43,6 +44,12 @@ class SimplePuzzleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final windowSize = MediaQuery.of(context).size;
+    final double radius = windowSize.isSmall
+        ? 2
+        : windowSize.isLarge
+            ? 8
+            : 4;
     return SizedBox.fromSize(
       size: size,
       child: Padding(
@@ -50,12 +57,13 @@ class SimplePuzzleTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor.withOpacity(0.5),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
           ),
           child: Center(
             child: AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 150),
-                style: context.sizeAwareTextTheme.subtitle1!,
+              duration: const Duration(milliseconds: 150),
+              style: context.sizeAwareTextTheme.subtitle1!
+                  .copyWith(fontSize: size.shortestSide * 0.4),
               child: Text(
                 text,
               ),

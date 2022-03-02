@@ -51,8 +51,7 @@ class _PuzzleButtonState extends State<PuzzleButton> {
           onTap: widget.onPressed,
           child: Container(
             decoration: BoxDecoration(
-              // borderRadius: const BorderRadius.all(Radius.circular(50)),
-              color: Theme.of(context).primaryColor,
+              color: isHovering ? Colors.orange[600] : Colors.orange,
             ),
             child: AnimatedPadding(
               duration: animationDuration,

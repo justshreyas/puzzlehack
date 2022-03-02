@@ -46,6 +46,7 @@ class _GameSessionPageState extends State<GameSessionPage> {
     return BlocProvider<AudioManagerCubit>(
       create: (context) => widget.audioManagerCubit,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PuzzleAppBar(
           audioManagerCubit: widget.audioManagerCubit,
           isPlayingGame: true,
@@ -131,14 +132,14 @@ class _GameSessionPageState extends State<GameSessionPage> {
                   AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 150),
                     style: context.sizeAwareTextTheme.headline4!,
-                    child:const Text(
+                    child: const Text(
                       "Time Elapsed : XXm YYs",
                     ),
                   ),
                   AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 150),
                     style: context.sizeAwareTextTheme.headline4!,
-                    child:const Text(
+                    child: const Text(
                       "Number of moves : ZZ",
                     ),
                   ),

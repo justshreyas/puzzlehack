@@ -28,7 +28,7 @@ final TextTheme largeDisplayTextTheme = TextTheme(
     fontSize: 21,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
-    color: Colors.black87,
+    color: Colors.black54,
   ),
   subtitle2: GoogleFonts.workSans(
     fontSize: 18,
@@ -79,7 +79,7 @@ final TextTheme mediumDisplayTextTheme = TextTheme(
     fontSize: 15,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
-    color: Colors.black87,
+    color: Colors.black54,
   ),
   subtitle2: GoogleFonts.workSans(
     fontSize: 12,
@@ -130,7 +130,7 @@ final TextTheme smallDisplayTextTheme = TextTheme(
     fontSize: 12,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
-    color: Colors.black87,
+    color: Colors.black,
   ),
   subtitle2: GoogleFonts.workSans(
     fontSize: 10,

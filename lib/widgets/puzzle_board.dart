@@ -24,6 +24,9 @@ class PuzzleBoard extends StatelessWidget {
       builder: (context, state) {
         final availableSize = MediaQuery.of(context).size;
 
+
+        
+
         final availableExpanse = (min(
               availableSize.longestSide / 2,
               availableSize.shortestSide,
