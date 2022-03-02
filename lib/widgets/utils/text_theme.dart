@@ -10,20 +10,20 @@ final TextTheme largeDisplayTextTheme = TextTheme(
       color: Colors.grey[800]),
   headline2: GoogleFonts.workSans(fontSize: 51, fontWeight: FontWeight.w400),
   headline3: GoogleFonts.workSans(
-      fontSize: 36, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  headline4: GoogleFonts.exo(
+      fontSize: 36, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+  headline4: GoogleFonts.workSans(
       fontSize: 27, fontWeight: FontWeight.w400, letterSpacing: 0.25),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 21, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+      fontSize: 21, fontWeight: FontWeight.w500, letterSpacing: 0.15),
   subtitle2: GoogleFonts.workSans(
       fontSize: 18, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-  bodyText1: GoogleFonts.exo(
+  bodyText1: GoogleFonts.workSans(
       fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-  bodyText2: GoogleFonts.exo(
+  bodyText2: GoogleFonts.workSans(
       fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  button: GoogleFonts.exo(
-    fontSize: 14,
-    fontWeight: FontWeight.w800,
+  button: GoogleFonts.workSans(
+    fontSize: 21,
+    fontWeight: FontWeight.w600,
     letterSpacing: 1.5,
     color: Colors.white,
   ),
@@ -37,21 +37,21 @@ final TextTheme mediumDisplayTextTheme = TextTheme(
       color: Colors.grey[800]),
   headline2: GoogleFonts.workSans(fontSize: 36, fontWeight: FontWeight.w400),
   headline3: GoogleFonts.workSans(
-      fontSize: 24, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  headline4: GoogleFonts.exo(
+      fontSize: 24, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+  headline4: GoogleFonts.workSans(
       fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+      fontSize: 15, fontWeight: FontWeight.w500, letterSpacing: 0.15),
   subtitle2: GoogleFonts.workSans(
       fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-  bodyText1: GoogleFonts.exo(
+  bodyText1: GoogleFonts.workSans(
       fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-  bodyText2: GoogleFonts.exo(
+  bodyText2: GoogleFonts.workSans(
       fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  button: GoogleFonts.exo(
-    fontSize: 9,
-    fontWeight: FontWeight.w800,
-    letterSpacing: 1.5,
+  button: GoogleFonts.workSans(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
     color: Colors.white,
   ),
 );
@@ -64,21 +64,21 @@ final TextTheme smallDisplayTextTheme = TextTheme(
       color: Colors.grey[800]),
   headline2: GoogleFonts.workSans(fontSize: 24, fontWeight: FontWeight.w400),
   headline3: GoogleFonts.workSans(
-      fontSize: 21, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  headline4: GoogleFonts.exo(
+      fontSize: 21, fontWeight: FontWeight.w400, letterSpacing: 0.25,height:1.1,),
+  headline4: GoogleFonts.workSans(
       fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.25),
   subtitle1: GoogleFonts.workSans(
-      fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 0.15),
+      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.15),
   subtitle2: GoogleFonts.workSans(
       fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-  bodyText1: GoogleFonts.exo(
-      fontSize: 8, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-  bodyText2: GoogleFonts.exo(
-      fontSize: 7, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-  button: GoogleFonts.exo(
-    fontSize: 7,
-    fontWeight: FontWeight.w800,
-    letterSpacing: 1.5,
+  bodyText1: GoogleFonts.workSans(
+      fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+  bodyText2: GoogleFonts.workSans(
+      fontSize: 8, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+  button: GoogleFonts.workSans(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.1,
     color: Colors.white,
   ),
 );
