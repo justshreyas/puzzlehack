@@ -38,7 +38,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
       isHovering = true;
     });
 
-    if(widget.audioManagerCubit.state.soundsEnabled){
+    if (widget.audioManagerCubit.state.soundsEnabled) {
       widget.audioManagerCubit.audioDataDelegate.playComponentHoveredSound();
     }
   }
@@ -72,7 +72,8 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
               puzzleDifficulty: widget.difficulty,
             );
 
-            unawaited(widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic());
+            unawaited(
+                widget.audioManagerCubit.audioDataDelegate.pausePreGameMusic());
 
             unawaited(
               Navigator.push(
@@ -86,9 +87,14 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                     );
                   },
                 ),
-              ).then((value) {
-                widget.audioManagerCubit.audioDataDelegate.playPreGameMusic();
-              }),
+              ).then(
+                (value) {
+                  if (widget.audioManagerCubit.state.musicEnabled) {
+                    widget.audioManagerCubit.audioDataDelegate
+                        .playPreGameMusic();
+                  }
+                },
+              ),
             );
           },
           child: AnimatedContainer(
