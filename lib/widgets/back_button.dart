@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 
 class PuzzleBackButton extends StatefulWidget {
-  const PuzzleBackButton({Key? key}) : super(key: key);
+  final AudioManagerCubit audioManagerCubit;
+
+  const PuzzleBackButton({
+    Key? key,
+    required this.audioManagerCubit,
+  }) : super(key: key);
 
   @override
   State<PuzzleBackButton> createState() => _PuzzleBackButtonState();
@@ -21,9 +26,9 @@ class _PuzzleBackButtonState extends State<PuzzleBackButton> {
       isHovering = true;
     });
 
-    // if(widget.audioManagerCubit.state.soundsEnabled){
-    //   widget.audioManagerCubit.audioDataDelegate.playComponentHoveredSound();
-    // }
+    if (widget.audioManagerCubit.state.soundsEnabled) {
+      widget.audioManagerCubit.audioDataDelegate.playComponentHoveredSound();
+    }
   }
 
   void onExit(PointerEvent details) {
