@@ -101,23 +101,28 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             duration: animationDuration1,
             curve: animationCurve,
             decoration: BoxDecoration(
-              color: isHovering ? Colors.orange[200] : Colors.grey[100],
+              color: isHovering ? Colors.orange[200] : Colors.grey[50],
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             padding: isHovering
                 ? const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
                 : const EdgeInsets.all(0),
             child: Center(
-              child: Column(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 150),
-                    style: isHovering
-                        ? context.sizeAwareTextTheme.headline2!
-                        : context.sizeAwareTextTheme.headline3!,
-                    child: Text(
-                      "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
+                  Expanded(
+                    flex: 3,
+                    child: Center(
+                      child: AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 150),
+                        style: isHovering
+                            ? context.sizeAwareTextTheme.headline2!
+                            : context.sizeAwareTextTheme.headline3!,
+                        child: Text(
+                          "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
+                        ),
+                      ),
                     ),
                   ),
                   AnimatedSwitcher(
@@ -136,28 +141,34 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                       child: child,
                     ),
                   ),
-                  AnimatedPadding(
-                    duration: animationDuration1,
-                    padding: isHovering
-                        ? const EdgeInsets.only(top: 20.0)
-                        : const EdgeInsets.all(10.0),
-                    child: AnimatedContainer(
-                      duration: animationDuration2,
-                      curve: animationCurve,
-                      decoration: BoxDecoration(
-                        color: isHovering ? Colors.orange[600] : Colors.orange,
-                      ),
-                      padding: isHovering
-                          ? const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10)
-                          : const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                      child: AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 150),
-                        style: context.sizeAwareTextTheme.button!
-                            .copyWith(fontSize: cardHeight * 0.03),
-                        child: Text(
-                          describeEnum(widget.difficulty).toUpperCase(),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    flex: 2,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 10),
+                        child: AnimatedContainer(
+                          duration: animationDuration2,
+                          curve: animationCurve,
+                          decoration: BoxDecoration(
+                            color:
+                                isHovering ? Colors.orange[600] : Colors.orange,
+                          ),
+                          padding: isHovering
+                              ? const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10)
+                              : const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 20),
+                                  alignment: Alignment.center,
+                          child: AnimatedDefaultTextStyle(
+                            duration: const Duration(milliseconds: 150),
+                            style: context.sizeAwareTextTheme.button!
+                                .copyWith(fontSize: cardHeight * 0.011),
+                            child: Text(
+                              describeEnum(widget.difficulty).toUpperCase(),
+                            ),
+                          ),
                         ),
                       ),
                     ),

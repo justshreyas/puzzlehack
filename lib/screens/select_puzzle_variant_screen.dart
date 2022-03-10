@@ -48,19 +48,13 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              flex: 4,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 150),
-                    style: context.sizeAwareTextTheme.headline1!,
-                    child: const Text(
-                      "Select a difficulty level",
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.sizeAwareTextTheme.headline1!,
+                child: const Text(
+                  "Select a difficulty level",
                 ),
               ),
             ),
@@ -71,41 +65,29 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
                   padding: const EdgeInsets.all(30.0).add(
                       const EdgeInsets.symmetric(
                           horizontal: 50)), //TODO adjustments
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final bool isLandscape =
-                          constraints.maxWidth > constraints.maxHeight;
-                      final List<Widget> selectionCards = List.generate(
-                        PuzzleDifficulty.values.length,
-                        (index) => SizedBox.fromSize(
-                          size: windowSize.isSmall
-                              ? const Size(200, 150)
-                              : windowSize.isLarge
-                                  ? const Size(250, 200)
-                                  : const Size(150, 100),
-                          child: Center(
-                            child: PuzzleSelectionCard(
-                              audioManagerCubit: widget.audioManagerCubit,
-                              difficulty: PuzzleDifficulty.values[index],
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(
+                            PuzzleDifficulty.values.length,
+                            (index) => Expanded(
+                              child: PuzzleSelectionCard(
+                                audioManagerCubit: widget.audioManagerCubit,
+                                difficulty: PuzzleDifficulty.values[index],
+                              ),
                             ),
                           ),
                         ),
-                      );
-                      return AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 50),
-                        transitionBuilder: (child, animation) =>
-                            FadeTransition(opacity: animation, child: child),
-                        child: isLandscape
-                            ? Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: selectionCards,
-                              )
-                            : Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: selectionCards,
-                              ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ),
               ),
