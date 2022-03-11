@@ -101,7 +101,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             duration: AnimationConstants.shortDuration,
             curve: animationCurve,
             decoration: BoxDecoration(
-              color: isHovering ? Colors.orange[500] : Colors.orange[300],
+              color: isHovering ? Colors.orange[500] : Colors.orange[50],
             ),
             padding: isHovering
                 ? LayoutConstants.componentOnHoverPadding(displaySize)
@@ -110,8 +110,10 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: AnimatedDefaultTextStyle(
-                  duration: AnimationConstants.longDuration,
-                  style: context.sizeAwareTextTheme.button!,
+                  duration: AnimationConstants.shortDuration,
+                  style: context.sizeAwareTextTheme.button!.copyWith(
+                    color: isHovering ? Colors.white : Colors.orange[800],
+                  ),
                   child: Text(
                     describeEnum(widget.difficulty).toUpperCase(),
                   ),

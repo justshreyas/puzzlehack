@@ -28,7 +28,7 @@ class PuzzleSelectionOptions extends StatelessWidget {
 
         final biggestSize = constraints.biggest;
 
-        final showRow = biggestSize.aspectRatio > 1.3;
+        final showRow = biggestSize.aspectRatio > 1.8;
 
         return AnimatedSwitcher(
           duration: AnimationConstants.shortestDuration,
