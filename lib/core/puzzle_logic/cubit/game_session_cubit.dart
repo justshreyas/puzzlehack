@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle/tile.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 
 part 'game_session_state.dart';
 
@@ -53,7 +54,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   Future<void> tryMovingATile(int randomIndex) async {
     final mutablePuzzle = state.puzzle;
     final candidate = mutablePuzzle.tiles.elementAt(randomIndex);
-    const delayDuration = Duration(milliseconds: 150);
+    const delayDuration = AnimationConstants.mediumDuration;
 
     if (mutablePuzzle.canMoveTile(candidate)) {
       final changedPuzzle = mutablePuzzle.moveTile(candidate);

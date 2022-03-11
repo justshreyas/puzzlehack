@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleButton extends StatefulWidget {
@@ -20,7 +21,6 @@ class PuzzleButton extends StatefulWidget {
 class _PuzzleButtonState extends State<PuzzleButton> {
   bool isHovering = false;
 
-  static const animationDuration = Duration(milliseconds: 100);
   static const animationCurve = Curves.easeIn;
 
   void onEnter(PointerEvent details) {
@@ -38,7 +38,7 @@ class _PuzzleButtonState extends State<PuzzleButton> {
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      duration: animationDuration,
+      duration: AnimationConstants.shortDuration,
       curve: animationCurve,
       padding: isHovering
           ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0)
@@ -54,13 +54,13 @@ class _PuzzleButtonState extends State<PuzzleButton> {
               color: isHovering ? Colors.orange[600] : Colors.orange,
             ),
             child: AnimatedPadding(
-              duration: animationDuration,
+              duration: AnimationConstants.shortDuration,
               curve: animationCurve,
               padding: isHovering
                   ? const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0)
                   : const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0),
               child: AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 50),
+                duration: AnimationConstants.shortestDuration,
                 style: context.sizeAwareTextTheme.button!,
                 child: Text(
                   widget.text,

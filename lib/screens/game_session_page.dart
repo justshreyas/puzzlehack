@@ -5,6 +5,7 @@ import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_board.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class GameSessionPage extends StatefulWidget {
@@ -123,21 +124,21 @@ class _GameSessionPageState extends State<GameSessionPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 150),
+                    duration: AnimationConstants.longDuration,
                     style: context.sizeAwareTextTheme.headline4!,
                     child: const Text(
                       "Level : E/M/H",
                     ),
                   ),
                   AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 150),
+                    duration: AnimationConstants.longDuration,
                     style: context.sizeAwareTextTheme.headline4!,
                     child: const Text(
                       "Time Elapsed : XXm YYs",
                     ),
                   ),
                   AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 150),
+                    duration: AnimationConstants.longDuration,
                     style: context.sizeAwareTextTheme.headline4!,
                     child: const Text(
                       "Number of moves : ZZ",
@@ -146,9 +147,8 @@ class _GameSessionPageState extends State<GameSessionPage> {
                 ],
               ),
             ));
-
             return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 50),
+              duration: AnimationConstants.shortestDuration,
               transitionBuilder: (child, animation) =>
                   FadeTransition(opacity: animation, child: child),
               child: constraints.maxWidth > constraints.maxHeight

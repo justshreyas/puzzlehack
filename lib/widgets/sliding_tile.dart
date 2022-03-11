@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 import 'package:puzzlehack/widgets/utils/display_size.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
@@ -61,7 +62,7 @@ class SimplePuzzleTile extends StatelessWidget {
           ),
           child: Center(
             child: AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 150),
+              duration: AnimationConstants.longDuration,
               style: context.sizeAwareTextTheme.subtitle1!
                   .copyWith(fontSize: size.shortestSide * 0.4),
               child: Text(

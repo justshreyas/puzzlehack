@@ -6,6 +6,7 @@ import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleSelectionCard extends StatefulWidget {
@@ -24,8 +25,6 @@ class PuzzleSelectionCard extends StatefulWidget {
 class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
   bool isHovering = false;
 
-  static const animationDuration1 = Duration(milliseconds: 100);
-  static const animationDuration2 = Duration(milliseconds: 20);
   static const animationCurve = Curves.easeIn;
 
   @override
@@ -58,7 +57,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
       onEnter: onEnter,
       onExit: onExit,
       child: AnimatedPadding(
-        duration: animationDuration1,
+        duration: AnimationConstants.shortDuration,
         curve: animationCurve,
         padding: isHovering
             ? const EdgeInsets.all(0)
@@ -98,7 +97,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             );
           },
           child: AnimatedContainer(
-            duration: animationDuration1,
+            duration: AnimationConstants.shortDuration,
             curve: animationCurve,
             decoration: BoxDecoration(
               color: isHovering ? Colors.orange[200] : Colors.grey[50],
@@ -115,7 +114,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                     flex: 3,
                     child: Center(
                       child: AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 150),
+                        duration: AnimationConstants.longDuration,
                         style: isHovering
                             ? context.sizeAwareTextTheme.headline2!
                             : context.sizeAwareTextTheme.headline3!,
@@ -126,10 +125,10 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                     ),
                   ),
                   AnimatedSwitcher(
-                    duration: animationDuration2,
+                    duration: AnimationConstants.shortestDuration,
                     child: isHovering
                         ? AnimatedDefaultTextStyle(
-                            duration: const Duration(milliseconds: 150),
+                            duration: AnimationConstants.longDuration,
                             style: context.sizeAwareTextTheme.subtitle1!,
                             child: Text(
                               "${(widget.difficulty.puzzleDimension * widget.difficulty.puzzleDimension) - 1} Tiles",
@@ -149,7 +148,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 10),
                         child: AnimatedContainer(
-                          duration: animationDuration2,
+                          duration: AnimationConstants.shortestDuration,
                           curve: animationCurve,
                           decoration: BoxDecoration(
                             color:
@@ -160,9 +159,9 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                                   horizontal: 20, vertical: 10)
                               : const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 20),
-                                  alignment: Alignment.center,
+                          alignment: Alignment.center,
                           child: AnimatedDefaultTextStyle(
-                            duration: const Duration(milliseconds: 150),
+                            duration: AnimationConstants.longDuration,
                             style: context.sizeAwareTextTheme.button!
                                 .copyWith(fontSize: cardHeight * 0.011),
                             child: Text(

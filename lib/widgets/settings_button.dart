@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
+import 'package:puzzlehack/widgets/utils/animation_constants.dart';
 
 class PuzzleSettingsToggleButton extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;
@@ -63,7 +64,7 @@ class _PuzzleSettingsToggleButtonState
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      duration: const Duration(milliseconds: 50),
+      duration: AnimationConstants.shortestDuration,
       padding:
           isHovering ? const EdgeInsets.all(10.0) : const EdgeInsets.all(20.0),
       child: MouseRegion(
@@ -77,7 +78,7 @@ class _PuzzleSettingsToggleButtonState
             widget.onTap();
           },
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: AnimationConstants.mediumDuration,
             decoration: BoxDecoration(
               border: Border.all(
                 color: color,
