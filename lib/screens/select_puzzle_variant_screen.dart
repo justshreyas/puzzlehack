@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
-import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
+import 'package:puzzlehack/widgets/puzzle_selection_options.dart';
 import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/widgets/utils/layout_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
@@ -37,56 +38,29 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final displaySize = MediaQuery.of(context).size.displaySize;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PuzzleAppBar(
         audioManagerCubit: widget.audioManagerCubit,
       ),
-      body: Center(
+      body: Padding(
+        padding: LayoutConstants.bodyPadding(displaySize),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: AnimatedDefaultTextStyle(
-                duration: AnimationConstants.longDuration,
-                style: context.sizeAwareTextTheme.headline1!,
-                child: const Text(
-                  "Select a difficulty level",
-                ),
+            AnimatedDefaultTextStyle(
+              duration: AnimationConstants.longDuration,
+              style: context.sizeAwareTextTheme.headline4!,
+              child: const Text(
+                "Select a difficulty level",
               ),
             ),
+            const SizedBox(height: 50, width: 50),
             Expanded(
-              flex: 8,
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0).add(
-                      const EdgeInsets.symmetric(
-                          horizontal: 50)), //TODO adjustments
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            PuzzleDifficulty.values.length,
-                            (index) => Expanded(
-                              child: PuzzleSelectionCard(
-                                audioManagerCubit: widget.audioManagerCubit,
-                                difficulty: PuzzleDifficulty.values[index],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                child: PuzzleSelectionOptions(
+                  audioManagerCubit: widget.audioManagerCubit,
                 ),
               ),
             )

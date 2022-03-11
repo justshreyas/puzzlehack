@@ -7,6 +7,8 @@ import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/game_session_page.dart';
 import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/widgets/utils/layout_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleSelectionCard extends StatefulWidget {
@@ -50,8 +52,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
 
   @override
   Widget build(BuildContext context) {
-    final double cardHeight = MediaQuery.of(context).size.height;
-
+    final displaySize = MediaQuery.of(context).size.displaySize;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: onEnter,
@@ -61,7 +62,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
         curve: animationCurve,
         padding: isHovering
             ? const EdgeInsets.all(0)
-            : const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            : LayoutConstants.outerComponentPadding(displaySize),
         child: GestureDetector(
           onTap: () {
             unawaited(widget.audioManagerCubit.audioDataDelegate
@@ -100,79 +101,21 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             duration: AnimationConstants.shortDuration,
             curve: animationCurve,
             decoration: BoxDecoration(
-              color: isHovering ? Colors.orange[200] : Colors.grey[50],
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              color: isHovering ? Colors.orange[500] : Colors.orange[300],
             ),
             padding: isHovering
-                ? const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
+                ? LayoutConstants.outerComponentPadding(displaySize)
                 : const EdgeInsets.all(0),
             child: Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Center(
-                      child: AnimatedDefaultTextStyle(
-                        duration: AnimationConstants.longDuration,
-                        style: isHovering
-                            ? context.sizeAwareTextTheme.headline2!
-                            : context.sizeAwareTextTheme.headline3!,
-                        child: Text(
-                          "${widget.difficulty.puzzleDimension}×${widget.difficulty.puzzleDimension}",
-                        ),
-                      ),
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: AnimatedDefaultTextStyle(
+                  duration: AnimationConstants.longDuration,
+                  style: context.sizeAwareTextTheme.button!,
+                  child: Text(
+                    describeEnum(widget.difficulty).toUpperCase(),
                   ),
-                  AnimatedSwitcher(
-                    duration: AnimationConstants.shortestDuration,
-                    child: isHovering
-                        ? AnimatedDefaultTextStyle(
-                            duration: AnimationConstants.longDuration,
-                            style: context.sizeAwareTextTheme.subtitle1!,
-                            child: Text(
-                              "${(widget.difficulty.puzzleDimension * widget.difficulty.puzzleDimension) - 1} Tiles",
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                    transitionBuilder: (child, animation) => FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Expanded(
-                    flex: 2,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 10),
-                        child: AnimatedContainer(
-                          duration: AnimationConstants.shortestDuration,
-                          curve: animationCurve,
-                          decoration: BoxDecoration(
-                            color:
-                                isHovering ? Colors.orange[600] : Colors.orange,
-                          ),
-                          padding: isHovering
-                              ? const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10)
-                              : const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 20),
-                          alignment: Alignment.center,
-                          child: AnimatedDefaultTextStyle(
-                            duration: AnimationConstants.longDuration,
-                            style: context.sizeAwareTextTheme.button!
-                                .copyWith(fontSize: cardHeight * 0.011),
-                            child: Text(
-                              describeEnum(widget.difficulty).toUpperCase(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
