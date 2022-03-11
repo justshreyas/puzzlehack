@@ -57,14 +57,15 @@ class SimplePuzzleTile extends StatelessWidget {
         padding: const EdgeInsets.all(2.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.5),
+            color: Colors.orange,
             borderRadius: BorderRadius.all(Radius.circular(radius)),
           ),
           child: Center(
             child: AnimatedDefaultTextStyle(
               duration: AnimationConstants.longDuration,
               style: context.sizeAwareTextTheme.subtitle1!
-                  .copyWith(fontSize: size.shortestSide * 0.4),
+                  .copyWith(fontSize: size.shortestSide * 0.4,
+                  ),
               child: Text(
                 text,
               ),

@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AudioManagerCubit audioManagerCubit = context.watch();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.orange[50],
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

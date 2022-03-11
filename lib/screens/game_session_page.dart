@@ -47,11 +47,12 @@ class _GameSessionPageState extends State<GameSessionPage> {
     return BlocProvider<AudioManagerCubit>(
       create: (context) => widget.audioManagerCubit,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.orange[50],
         appBar: PuzzleAppBar(
           audioManagerCubit: widget.audioManagerCubit,
           isPlayingGame: true,
         ),
+        
         body: LayoutBuilder(
           builder: (context, constraints) {
             final gameWidget = Expanded(

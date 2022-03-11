@@ -40,7 +40,7 @@ class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
   Widget build(BuildContext context) {
     final displaySize = MediaQuery.of(context).size.displaySize;
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.orange[50],
       appBar: PuzzleAppBar(
         audioManagerCubit: widget.audioManagerCubit,
       ),
