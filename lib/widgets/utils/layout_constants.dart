@@ -8,13 +8,13 @@ class LayoutConstants {
   static const Size appBarSizeMedium = Size.fromHeight(80);
   static const Size appBarSizeLarge = Size.fromHeight(100);
 
-  static const EdgeInsets outerComponentPaddingSmall = EdgeInsets.all(5);
-  static const EdgeInsets outerComponentPaddingMedium = EdgeInsets.all(10);
-  static const EdgeInsets outerComponentPaddingLarge = EdgeInsets.all(20);
+  static const EdgeInsets componentOnHoverPaddingSmall = EdgeInsets.all(5);
+  static const EdgeInsets componentOnHoverPaddingMedium = EdgeInsets.all(10);
+  static const EdgeInsets componentOnHoverPaddingLarge = EdgeInsets.all(20);
 
-  static const EdgeInsets bodyPaddingSmall = EdgeInsets.all(50);
-  static const EdgeInsets bodyPaddingMedium = EdgeInsets.all(100);
-  static const EdgeInsets bodyPaddingLarge = EdgeInsets.all(200);
+  static const EdgeInsets bodyPaddingSmall = EdgeInsets.all(20);
+  static const EdgeInsets bodyPaddingMedium = EdgeInsets.all(50);
+  static const EdgeInsets bodyPaddingLarge = EdgeInsets.all(80);
 
   static const double onHoverMultiplier = 1.12;
 
@@ -37,14 +37,14 @@ class LayoutConstants {
     }
   }
 
-  static EdgeInsets outerComponentPadding(DisplaySize displaySize) {
+  static EdgeInsets componentOnHoverPadding(DisplaySize displaySize) {
     if (displaySize == DisplaySize.large) {
-      return outerComponentPaddingLarge;
+      return componentOnHoverPaddingLarge;
     }
     if (displaySize == DisplaySize.medium) {
-      return outerComponentPaddingMedium;
+      return componentOnHoverPaddingMedium;
     } else {
-      return outerComponentPaddingSmall;
+      return componentOnHoverPaddingSmall;
     }
   }
 

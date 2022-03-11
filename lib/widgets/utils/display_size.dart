@@ -7,9 +7,9 @@ enum DisplaySize {
 }
 
 extension DisplaySizeUtil on Size {
-  bool get isLarge => shortestSide > 650;
-  bool get isMedium => shortestSide > 350 && shortestSide < 660;
-  bool get isSmall => shortestSide < 350;
+  bool get isLarge => shortestSide >= 750;
+  bool get isMedium => shortestSide > 350 && shortestSide < 750;
+  bool get isSmall => shortestSide <= 350;
 
   DisplaySize get displaySize {
     return isLarge

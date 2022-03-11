@@ -62,7 +62,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
         curve: animationCurve,
         padding: isHovering
             ? const EdgeInsets.all(0)
-            : LayoutConstants.outerComponentPadding(displaySize),
+            : LayoutConstants.componentOnHoverPadding(displaySize),
         child: GestureDetector(
           onTap: () {
             unawaited(widget.audioManagerCubit.audioDataDelegate
@@ -104,7 +104,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
               color: isHovering ? Colors.orange[500] : Colors.orange[300],
             ),
             padding: isHovering
-                ? LayoutConstants.outerComponentPadding(displaySize)
+                ? LayoutConstants.componentOnHoverPadding(displaySize)
                 : const EdgeInsets.all(0),
             child: Center(
               child: Padding(
