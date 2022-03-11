@@ -22,15 +22,18 @@ class PuzzleBoard extends StatelessWidget {
     return BlocBuilder<GameSessionCubit, GameSessionState>(
       bloc: cubit,
       builder: (context, state) {
-        final availableSize = MediaQuery.of(context).size;
+        final size = MediaQuery.of(context).size;
+        final availableSize =
+            Size(size.width, size.height - 100); // Compensate for appbar height
 
         final availableExpanse = (min(
               availableSize.longestSide / 2,
               availableSize.shortestSide,
             )) -
-            152;
+            60; // Compensate for various paddings
 
-        final double tileSide = availableExpanse / state.puzzle.dimension;
+        final double tileSide =
+            (availableExpanse / state.puzzle.dimension).truncateToDouble();
 
         final puzzleBoardSize = Size(availableExpanse, availableExpanse);
         final tileSize = Size(tileSide, tileSide);
