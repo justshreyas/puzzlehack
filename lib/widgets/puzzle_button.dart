@@ -8,12 +8,14 @@ class PuzzleButton extends StatefulWidget {
   final String text;
   final IconData iconData;
   final VoidCallback? onPressed;
+  final DisplaySize displaySize;
 
   const PuzzleButton({
     Key? key,
     this.text = "PLAY",
     this.iconData = Icons.arrow_forward_rounded,
     this.onPressed,
+    required this.displaySize,
   }) : super(key: key);
 
   @override
@@ -39,16 +41,16 @@ class _PuzzleButtonState extends State<PuzzleButton> {
 
   @override
   Widget build(BuildContext context) {
-    final displaySize = MediaQuery.of(context).size.displaySize;
-
-    return SizedBox(
-      height: 80,width: 160,
+    return AnimatedContainer(
+      duration: AnimationConstants.shortDuration,
+      height: LayoutConstants.buttonSize(widget.displaySize).height,
+      width: LayoutConstants.buttonSize(widget.displaySize).width,
       child: AnimatedPadding(
         duration: AnimationConstants.shortDuration,
         curve: animationCurve,
         padding: isHovering
             ? const EdgeInsets.all(0)
-            : LayoutConstants.componentOnHoverPadding(displaySize),
+            : LayoutConstants.componentOnHoverPadding(widget.displaySize),
         child: MouseRegion(
           onEnter: onEnter,
           onExit: onExit,
@@ -60,9 +62,9 @@ class _PuzzleButtonState extends State<PuzzleButton> {
                 color: isHovering ? Colors.orange[600] : Colors.orange,
               ),
               padding: isHovering
-            ? const EdgeInsets.all(0)
-            : LayoutConstants.componentOnHoverPadding(displaySize),
-              alignment:Alignment.center,
+                  ? const EdgeInsets.all(0)
+                  : LayoutConstants.componentOnHoverPadding(widget.displaySize),
+              alignment: Alignment.center,
               child: AnimatedDefaultTextStyle(
                 duration: AnimationConstants.shortestDuration,
                 style: context.sizeAwareTextTheme.button!,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/widgets/puzzle_button.dart';
 import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleCompletedPopup extends StatelessWidget {
@@ -10,14 +11,14 @@ class PuzzleCompletedPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: AnimatedDefaultTextStyle(
-        duration: AnimationConstants.longDuration,
+        duration: AnimationConstants.shortDuration,
         style: context.sizeAwareTextTheme.headline3!,
         child: const Text(
           "Wohoo!",
         ),
       ),
       content: AnimatedDefaultTextStyle(
-        duration: AnimationConstants.longDuration,
+        duration: AnimationConstants.shortDuration,
         style: context.sizeAwareTextTheme.subtitle2!,
         child: const Text(
           "You made it! You solved the puzzle in XX m YY s\n, using ZZ moves.", // TODO : Add
@@ -25,6 +26,7 @@ class PuzzleCompletedPopup extends StatelessWidget {
       ),
       actions: [
         PuzzleButton(
+          displaySize: MediaQuery.of(context).size.displaySize,
           text: "GO BACK",
           onPressed: () {
             Navigator.popUntil(

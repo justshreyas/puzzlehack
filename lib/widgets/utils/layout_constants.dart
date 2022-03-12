@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:puzzlehack/widgets/utils/display_size.dart';
 
 class LayoutConstants {
-  static const Size appBarSizeSmall = Size.fromHeight(70);
-  static const Size appBarSizeMedium = Size.fromHeight(80);
-  static const Size appBarSizeLarge = Size.fromHeight(100);
+  static const Size buttonSizeSmall = Size(80, 40);
+  static const Size buttonSizeMedium = Size(160, 80);
+  static const Size buttonSizeLarge = Size(240, 120);
 
   static const EdgeInsets componentOnHoverPaddingSmall = EdgeInsets.all(5);
   static const EdgeInsets componentOnHoverPaddingMedium = EdgeInsets.all(10);
@@ -18,22 +18,29 @@ class LayoutConstants {
 
   static const double onHoverMultiplier = 1.12;
 
-  static const double iconSizeSmall = 15.0;
-  static const double iconSizeMedium = 18.0;
-  static const double iconSizeLarge = 24.0;
+  static const Size spacerSmall = Size(10, 10);
+  static const Size spacerMedium = Size(20, 20);
+  static const Size spacerLarge = Size(50, 50);
 
-  static const double borderThicknessSmall = 2.0;
-  static const double borderThicknessMedium = 4.0;
-  static const double borderThicknessLarge = 6.0;
-
-  static Size appBarSize(DisplaySize displaySize) {
+  static Size spacer(DisplaySize displaySize) {
     if (displaySize == DisplaySize.large) {
-      return appBarSizeLarge;
+      return spacerLarge;
     }
     if (displaySize == DisplaySize.medium) {
-      return appBarSizeMedium;
+      return spacerMedium;
     } else {
-      return appBarSizeSmall;
+      return spacerSmall;
+    }
+  }
+
+  static Size buttonSize(DisplaySize displaySize) {
+    if (displaySize == DisplaySize.large) {
+      return buttonSizeLarge;
+    }
+    if (displaySize == DisplaySize.medium) {
+      return buttonSizeMedium;
+    } else {
+      return buttonSizeSmall;
     }
   }
 
@@ -56,28 +63,6 @@ class LayoutConstants {
       return bodyPaddingMedium;
     } else {
       return bodyPaddingSmall;
-    }
-  }
-
-  static double iconSize(DisplaySize displaySize) {
-    if (displaySize == DisplaySize.large) {
-      return iconSizeLarge;
-    }
-    if (displaySize == DisplaySize.medium) {
-      return iconSizeMedium;
-    } else {
-      return iconSizeSmall;
-    }
-  }
-
-  static double borderThickness(DisplaySize displaySize) {
-    if (displaySize == DisplaySize.large) {
-      return borderThicknessLarge;
-    }
-    if (displaySize == DisplaySize.medium) {
-      return borderThicknessMedium;
-    } else {
-      return borderThicknessSmall;
     }
   }
 }

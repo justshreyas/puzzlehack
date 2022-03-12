@@ -57,7 +57,7 @@ class SimplePuzzleTile extends StatelessWidget {
         padding: const EdgeInsets.all(2.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.orange,
+            color: Colors.orange[400],
             borderRadius: BorderRadius.all(Radius.circular(radius)),
           ),
           child: Center(

@@ -5,6 +5,8 @@ import 'package:puzzlehack/screens/select_puzzle_variant_screen.dart';
 import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/widgets/puzzle_button.dart';
 import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/widgets/utils/layout_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -13,6 +15,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AudioManagerCubit audioManagerCubit = context.watch();
+    final displaySize = MediaQuery.of(context).size.displaySize;
     return Scaffold(
       appBar: PuzzleAppBar(
         audioManagerCubit: audioManagerCubit,
@@ -27,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedDefaultTextStyle(
-                duration: AnimationConstants.longDuration,
+                duration: AnimationConstants.shortDuration,
                 style: context.sizeAwareTextTheme.headline2!,
                 child: const Text(
                   "Flutter Puzzle Hack",
@@ -36,15 +39,16 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               AnimatedDefaultTextStyle(
-                duration: AnimationConstants.longDuration,
+                duration: AnimationConstants.shortDuration,
                 style: context.sizeAwareTextTheme.subtitle2!,
                 child: const Text(
                   "a submission\nby justshreyas",
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox.fromSize(size: LayoutConstants.spacer(displaySize)),
               PuzzleButton(
+                displaySize: displaySize,
                 onPressed: () {
                   Navigator.push(
                     context,
