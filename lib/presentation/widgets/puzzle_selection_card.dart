@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:puzzlehack/cubit/countdown_timer/countdown_timer_cubit.dart';
 import 'package:puzzlehack/models/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
@@ -84,6 +85,7 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
                     return PlayGame(
                       gameSessionCubit: cubit,
                       audioManagerCubit: widget.audioManagerCubit,
+                      countdownTimerCubit: CountdownTimerCubit(),
                     );
                   },
                 ),

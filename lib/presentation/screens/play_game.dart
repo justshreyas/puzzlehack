@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puzzlehack/cubit/countdown_timer/countdown_timer_cubit.dart';
 import 'package:puzzlehack/models/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
@@ -12,10 +13,12 @@ import 'package:puzzlehack/presentation/widgets/puzzle_board.dart';
 class PlayGame extends StatefulWidget {
   final GameSessionCubit gameSessionCubit;
   final AudioManagerCubit audioManagerCubit;
+  final CountdownTimerCubit countdownTimerCubit;
   const PlayGame({
     Key? key,
     required this.gameSessionCubit,
     required this.audioManagerCubit,
+    required this.countdownTimerCubit,
   }) : super(key: key);
 
   @override
@@ -70,6 +73,8 @@ class _PlayGameState extends State<PlayGame> {
 
                       widget.audioManagerCubit.audioDataDelegate
                           .playPuzzleCompletedSound();
+
+                      widget.countdownTimerCubit.stopCounting();
 
                       showDialog(
                         context: context,
