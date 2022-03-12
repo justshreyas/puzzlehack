@@ -5,7 +5,13 @@ import 'package:puzzlehack/presentation/utils/text_theme.dart';
 import 'package:puzzlehack/presentation/widgets/buttons/puzzle_button.dart';
 
 class PuzzleCompletedPopup extends StatelessWidget {
-  const PuzzleCompletedPopup({Key? key}) : super(key: key);
+  final String puzzleCompletionTime, totalMoves;
+
+  const PuzzleCompletedPopup({
+    Key? key,
+    required this.puzzleCompletionTime,
+    required this.totalMoves,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +26,10 @@ class PuzzleCompletedPopup extends StatelessWidget {
       content: AnimatedDefaultTextStyle(
         duration: AnimationConstants.shortDuration,
         style: context.sizeAwareTextTheme.subtitle2!,
-        child: const Text(
-          "You made it! You solved the puzzle in XX m YY s\n, using ZZ moves.", // TODO : Add
+        child: Text(
+          "You made it! You solved the sliding tiles puzzle in "
+          "\n$puzzleCompletionTime, "
+          "\nusing a total of $totalMoves moves.", 
         ),
       ),
       actions: [

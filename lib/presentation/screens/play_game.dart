@@ -87,7 +87,10 @@ class _PlayGameState extends State<PlayGame> {
                         barrierColor: Colors.orange.withOpacity(0.38),
                         barrierDismissible: false,
                         builder: (_) {
-                          return const PuzzleCompletedPopup();
+                          return  PuzzleCompletedPopup(
+                            puzzleCompletionTime: widget.countdownTimerCubit.state.elapsed.toString().substring(2,7).replaceAll(":", " minutes and ") + " seconds",
+                            totalMoves: widget.gameSessionCubit.state.numberOfMoves.toString(),
+                          );
                         },
                       );
                     }

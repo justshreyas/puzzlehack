@@ -148,9 +148,9 @@ final TextTheme smallDisplayTextTheme = TextTheme(
     letterSpacing: 0.25,
   ),
   button: GoogleFonts.workSans(
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w600,
-    letterSpacing: 1.1,
+    letterSpacing: 1.2,
     color: Colors.white,
   ),
 );
