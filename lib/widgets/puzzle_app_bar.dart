@@ -31,10 +31,10 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
             audioManagerCubit: audioManagerCubit,
           ),
 
-          if(!showBackButton)PuzzleInfoButton(
-                        audioManagerCubit: audioManagerCubit,
+          // if(!showBackButton)PuzzleInfoButton(
+          //               audioManagerCubit: audioManagerCubit,
 
-          ),
+          // ),
 
           // * Actions
          if(showActions)    Row(
