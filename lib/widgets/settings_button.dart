@@ -68,6 +68,7 @@ class _PuzzleSettingsToggleButtonState
       padding:
           isHovering ? const EdgeInsets.all(10.0) : const EdgeInsets.all(20.0),
       child: MouseRegion(
+        cursor: SystemMouseCursors.click,
         onEnter: onEnter,
         onExit: onExit,
         child: GestureDetector(
