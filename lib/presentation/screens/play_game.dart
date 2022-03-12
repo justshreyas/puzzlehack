@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/cubit/countdown_timer/countdown_timer_cubit.dart';
@@ -7,7 +8,6 @@ import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/screens/puzzle_completed_popup.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 import 'package:puzzlehack/presentation/utils/text_theme.dart';
-import 'package:puzzlehack/presentation/widgets/game_session_info.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_board.dart';
 
@@ -64,6 +64,11 @@ class _PlayGameState extends State<PlayGame> {
                 child: BlocConsumer<GameSessionCubit, GameSessionState>(
                   bloc: widget.gameSessionCubit,
                   listener: (context, state) {
+                    if (state is GameSessionOngoing &&
+                        state.numberOfMoves == 0) {
+                      widget.countdownTimerCubit.startCounting();
+                    }
+
                     if (state is GameSessionOngoing && state.puzzle.isSolved) {
                       widget.gameSessionCubit.notifyPuzzleCompleted();
                     }
@@ -102,9 +107,69 @@ class _PlayGameState extends State<PlayGame> {
 
             final scoreWidget = Expanded(
               child: Center(
-                child: GameSessionInfo(
-                  gameSessionCubit: widget.gameSessionCubit,
-                  countdownTimerCubit: widget.countdownTimerCubit,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AnimatedDefaultTextStyle(
+                      duration: AnimationConstants.longDuration,
+                      style: context.sizeAwareTextTheme.headline4!,
+                      child: const Text(
+                        "Puzzle Difficulty Level",
+                      ),
+                    ),
+                    AnimatedDefaultTextStyle(
+                      duration: AnimationConstants.longDuration,
+                      style: context.sizeAwareTextTheme.subtitle2!
+                          .copyWith(color: Colors.orange[600]),
+                      child: Text(
+                        describeEnum(widget.gameSessionCubit.puzzleDifficulty)
+                            .toUpperCase(),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    AnimatedDefaultTextStyle(
+                      duration: AnimationConstants.longDuration,
+                      style: context.sizeAwareTextTheme.headline4!,
+                      child: const Text(
+                        "Time Elapsed",
+                      ),
+                    ),
+                    BlocBuilder<CountdownTimerCubit, CountdownTimerState>(
+                      bloc: widget.countdownTimerCubit,
+                      builder: (context, state) {
+                        return AnimatedDefaultTextStyle(
+                          duration: AnimationConstants.longDuration,
+                          style: context.sizeAwareTextTheme.subtitle2!
+                              .copyWith(color: Colors.orange[600]),
+                          child: Text(
+                            state.elapsed.toString().substring(2, 7),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    AnimatedDefaultTextStyle(
+                      duration: AnimationConstants.longDuration,
+                      style: context.sizeAwareTextTheme.headline4!,
+                      child: const Text(
+                        "Number Of Moves",
+                      ),
+                    ),
+                    BlocBuilder<GameSessionCubit, GameSessionState>(
+                      bloc: widget.gameSessionCubit,
+                      builder: (context, state) {
+                        return AnimatedDefaultTextStyle(
+                          duration: AnimationConstants.longDuration,
+                          style: context.sizeAwareTextTheme.subtitle2!
+                              .copyWith(color: Colors.orange[600]),
+                          child: Text(
+                            state.numberOfMoves.toString(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             );
