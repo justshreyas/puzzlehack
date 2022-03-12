@@ -64,6 +64,10 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
                         audioManagerCubit.audioDataDelegate.pausePreGameMusic();
                       }
                       audioManagerCubit.toggleBackgroundMusic();
+
+                      if(audioManagerCubit.state.soundsEnabled){
+                        audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
+                      }
                     },
                   );
                 },
@@ -80,6 +84,9 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
                     disabledIcon: Icons.volume_off_rounded,
                     onTap: () {
                       audioManagerCubit.toggleSounds();
+                       if(audioManagerCubit.state.soundsEnabled){
+                        audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
+                      }
                     },
                   );
                 },

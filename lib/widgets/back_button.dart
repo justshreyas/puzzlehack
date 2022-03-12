@@ -49,6 +49,9 @@ class _PuzzleBackButtonState extends State<PuzzleBackButton> {
         onExit: onExit,
         child: GestureDetector(
           onTap: () {
+                       if (widget.audioManagerCubit.state.soundsEnabled) {
+      widget.audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
+    }
             Navigator.pop(context);
           },
           child: AnimatedContainer(
