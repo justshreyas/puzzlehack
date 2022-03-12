@@ -7,6 +7,7 @@ import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/screens/puzzle_completed_popup.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 import 'package:puzzlehack/presentation/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/widgets/game_session_info.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_board.dart';
 
@@ -100,35 +101,14 @@ class _PlayGameState extends State<PlayGame> {
             );
 
             final scoreWidget = Expanded(
-                child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AnimatedDefaultTextStyle(
-                    duration: AnimationConstants.longDuration,
-                    style: context.sizeAwareTextTheme.headline4!,
-                    child: const Text(
-                      "Level : E/M/H",
-                    ),
-                  ),
-                  AnimatedDefaultTextStyle(
-                    duration: AnimationConstants.longDuration,
-                    style: context.sizeAwareTextTheme.headline4!,
-                    child: const Text(
-                      "Time Elapsed : XXm YYs",
-                    ),
-                  ),
-                  AnimatedDefaultTextStyle(
-                    duration: AnimationConstants.longDuration,
-                    style: context.sizeAwareTextTheme.headline4!,
-                    child: const Text(
-                      "Number of moves : ZZ",
-                    ),
-                  ),
-                ],
+              child: Center(
+                child: GameSessionInfo(
+                  gameSessionCubit: widget.gameSessionCubit,
+                  countdownTimerCubit: widget.countdownTimerCubit,
+                ),
               ),
-            ));
+            );
+
             return AnimatedSwitcher(
               duration: AnimationConstants.shortestDuration,
               transitionBuilder: (child, animation) =>
