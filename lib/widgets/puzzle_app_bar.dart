@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/back_button.dart';
+import 'package:puzzlehack/widgets/info_button.dart';
 import 'package:puzzlehack/widgets/settings_button.dart';
 
 class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AudioManagerCubit audioManagerCubit;
   final bool isPlayingGame;
+  final bool showBackButton;
+  final bool showActions;
 
   const PuzzleAppBar({
     Key? key,
     required this.audioManagerCubit,
     this.isPlayingGame = false,
+    this.showBackButton = true,
+    this.showActions = true,
   }) : super(key: key);
 
   @override
@@ -22,12 +27,17 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // * Leading
-          PuzzleBackButton(
+        if(showBackButton)  PuzzleBackButton(
             audioManagerCubit: audioManagerCubit,
           ),
 
+          if(!showBackButton)PuzzleInfoButton(
+                        audioManagerCubit: audioManagerCubit,
+
+          ),
+
           // * Actions
-          Row(
+         if(showActions)    Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               // * Music
