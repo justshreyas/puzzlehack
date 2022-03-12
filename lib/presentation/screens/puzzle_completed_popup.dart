@@ -31,7 +31,7 @@ class PuzzleCompletedPopup extends StatelessWidget {
           onPressed: () {
             Navigator.popUntil(
               context,
-              (route) => route.settings.name == "/SelectPuzzleVariantScreen",
+              (route) => route.settings.name == "/SelectDifficulty",
             );
           },
         ),

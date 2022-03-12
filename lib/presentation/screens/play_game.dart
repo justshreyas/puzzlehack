@@ -9,20 +9,20 @@ import 'package:puzzlehack/presentation/utils/text_theme.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_board.dart';
 
-class GameSessionPage extends StatefulWidget {
+class PlayGame extends StatefulWidget {
   final GameSessionCubit gameSessionCubit;
   final AudioManagerCubit audioManagerCubit;
-  const GameSessionPage({
+  const PlayGame({
     Key? key,
     required this.gameSessionCubit,
     required this.audioManagerCubit,
   }) : super(key: key);
 
   @override
-  _GameSessionPageState createState() => _GameSessionPageState();
+  _PlayGameState createState() => _PlayGameState();
 }
 
-class _GameSessionPageState extends State<GameSessionPage> {
+class _PlayGameState extends State<PlayGame> {
   @override
   void initState() {
     super.initState();

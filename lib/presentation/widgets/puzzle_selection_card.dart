@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:puzzlehack/models/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/presentation/screens/game_session_page.dart';
+import 'package:puzzlehack/presentation/screens/play_game.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 import 'package:puzzlehack/presentation/utils/display_size.dart';
 import 'package:puzzlehack/presentation/utils/layout_constants.dart';
@@ -79,9 +79,9 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  settings: const RouteSettings(name: "/GameSessionPage"),
+                  settings: const RouteSettings(name: "/PlayGame"),
                   builder: (_) {
-                    return GameSessionPage(
+                    return PlayGame(
                       gameSessionCubit: cubit,
                       audioManagerCubit: widget.audioManagerCubit,
                     );

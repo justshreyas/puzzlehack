@@ -7,20 +7,19 @@ import 'package:puzzlehack/presentation/utils/text_theme.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_selection_options.dart';
 
-class SelectPuzzleVariantScreen extends StatefulWidget {
+class SelectDifficulty extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;
 
-  const SelectPuzzleVariantScreen({
+  const SelectDifficulty({
     Key? key,
     required this.audioManagerCubit,
   }) : super(key: key);
 
   @override
-  State<SelectPuzzleVariantScreen> createState() =>
-      _SelectPuzzleVariantScreenState();
+  State<SelectDifficulty> createState() => _SelectDifficultyState();
 }
 
-class _SelectPuzzleVariantScreenState extends State<SelectPuzzleVariantScreen> {
+class _SelectDifficultyState extends State<SelectDifficulty> {
   @override
   void initState() {
     super.initState();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_data_delegate.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/presentation/screens/welcome_screen.dart';
+import 'package:puzzlehack/presentation/screens/welcome.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => AudioManagerCubit(AudioDataDelegate()),
-        child: const WelcomeScreen(),
+        child: const Welccome(),
       ),
     );
   }
