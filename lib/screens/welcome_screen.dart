@@ -16,7 +16,8 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: PuzzleAppBar(
         audioManagerCubit: audioManagerCubit,
-        showActions: false,showBackButton: false,
+        showActions: false,
+        showBackButton: false,
       ),
       backgroundColor: Colors.orange[50],
       body: Padding(
@@ -33,8 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-                          const SizedBox(height: 5),
-
+              const SizedBox(height: 5),
               AnimatedDefaultTextStyle(
                 duration: AnimationConstants.longDuration,
                 style: context.sizeAwareTextTheme.subtitle2!,

@@ -53,7 +53,6 @@ class _GameSessionPageState extends State<GameSessionPage> {
           audioManagerCubit: widget.audioManagerCubit,
           isPlayingGame: true,
         ),
-        
         body: LayoutBuilder(
           builder: (context, constraints) {
             final gameWidget = Expanded(
@@ -75,7 +74,7 @@ class _GameSessionPageState extends State<GameSessionPage> {
                       showDialog(
                         context: context,
                         barrierColor: Colors.orange.withOpacity(0.54),
-                                                barrierDismissible: false,
+                        barrierDismissible: false,
                         builder: (_) {
                           return const PuzzleCompletedPopup();
                         },

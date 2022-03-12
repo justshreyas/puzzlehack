@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_data_delegate.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/screens/welcome_screen.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 void main() {
   runApp(const MyApp());

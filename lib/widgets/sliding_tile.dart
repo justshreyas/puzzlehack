@@ -63,9 +63,9 @@ class SimplePuzzleTile extends StatelessWidget {
           child: Center(
             child: AnimatedDefaultTextStyle(
               duration: AnimationConstants.longDuration,
-              style: context.sizeAwareTextTheme.subtitle1!
-                  .copyWith(fontSize: size.shortestSide * 0.4,
-                  ),
+              style: context.sizeAwareTextTheme.subtitle1!.copyWith(
+                fontSize: size.shortestSide * 0.4,
+              ),
               child: Text(
                 text,
               ),

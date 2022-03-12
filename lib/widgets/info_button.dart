@@ -49,12 +49,12 @@ class _PuzzleInfoButtonState extends State<PuzzleInfoButton> {
         onExit: onExit,
         child: GestureDetector(
           onTap: () {
-             if (widget.audioManagerCubit.state.soundsEnabled) {
-      widget.audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
-    }
-            showAboutDialog(context: context,
-            
-            
+            if (widget.audioManagerCubit.state.soundsEnabled) {
+              widget.audioManagerCubit.audioDataDelegate
+                  .playComponentSelectedSound();
+            }
+            showAboutDialog(
+              context: context,
             );
           },
           child: AnimatedContainer(

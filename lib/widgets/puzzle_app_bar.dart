@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/widgets/back_button.dart';
-import 'package:puzzlehack/widgets/info_button.dart';
 import 'package:puzzlehack/widgets/settings_button.dart';
 
 class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -27,9 +26,10 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // * Leading
-        if(showBackButton)  PuzzleBackButton(
-            audioManagerCubit: audioManagerCubit,
-          ),
+          if (showBackButton)
+            PuzzleBackButton(
+              audioManagerCubit: audioManagerCubit,
+            ),
 
           // if(!showBackButton)PuzzleInfoButton(
           //               audioManagerCubit: audioManagerCubit,
@@ -37,62 +37,66 @@ class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
           // ),
 
           // * Actions
-         if(showActions)    Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // * Music
-              BlocBuilder<AudioManagerCubit, AudioManagerState>(
-                bloc: audioManagerCubit,
-                builder: (context, state) {
-                  return PuzzleSettingsToggleButton(
-                    audioManagerCubit: audioManagerCubit,
-                    enabled: state.musicEnabled,
-                    enabledIcon: Icons.music_note_rounded,
-                    disabledIcon: Icons.music_off_rounded,
-                    onTap: () {
-                      if (!state.musicEnabled) {
-                        if (isPlayingGame) {
-                          audioManagerCubit.audioDataDelegate
-                              .playGameSessionMusic();
+          if (showActions)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // * Music
+                BlocBuilder<AudioManagerCubit, AudioManagerState>(
+                  bloc: audioManagerCubit,
+                  builder: (context, state) {
+                    return PuzzleSettingsToggleButton(
+                      audioManagerCubit: audioManagerCubit,
+                      enabled: state.musicEnabled,
+                      enabledIcon: Icons.music_note_rounded,
+                      disabledIcon: Icons.music_off_rounded,
+                      onTap: () {
+                        if (!state.musicEnabled) {
+                          if (isPlayingGame) {
+                            audioManagerCubit.audioDataDelegate
+                                .playGameSessionMusic();
+                          } else {
+                            audioManagerCubit.audioDataDelegate
+                                .playPreGameMusic();
+                          }
                         } else {
                           audioManagerCubit.audioDataDelegate
-                              .playPreGameMusic();
+                              .pauseGameSessionMusic();
+                          audioManagerCubit.audioDataDelegate
+                              .pausePreGameMusic();
                         }
-                      } else {
-                        audioManagerCubit.audioDataDelegate
-                            .pauseGameSessionMusic();
-                        audioManagerCubit.audioDataDelegate.pausePreGameMusic();
-                      }
-                      audioManagerCubit.toggleBackgroundMusic();
+                        audioManagerCubit.toggleBackgroundMusic();
 
-                      if(audioManagerCubit.state.soundsEnabled){
-                        audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
-                      }
-                    },
-                  );
-                },
-              ),
+                        if (audioManagerCubit.state.soundsEnabled) {
+                          audioManagerCubit.audioDataDelegate
+                              .playComponentSelectedSound();
+                        }
+                      },
+                    );
+                  },
+                ),
 
-              // * Sounds
-              BlocBuilder<AudioManagerCubit, AudioManagerState>(
-                bloc: audioManagerCubit,
-                builder: (context, state) {
-                  return PuzzleSettingsToggleButton(
-                    audioManagerCubit: audioManagerCubit,
-                    enabled: state.soundsEnabled,
-                    enabledIcon: Icons.volume_up_rounded,
-                    disabledIcon: Icons.volume_off_rounded,
-                    onTap: () {
-                      audioManagerCubit.toggleSounds();
-                       if(audioManagerCubit.state.soundsEnabled){
-                        audioManagerCubit.audioDataDelegate.playComponentSelectedSound();
-                      }
-                    },
-                  );
-                },
-              ),
-            ],
-          )
+                // * Sounds
+                BlocBuilder<AudioManagerCubit, AudioManagerState>(
+                  bloc: audioManagerCubit,
+                  builder: (context, state) {
+                    return PuzzleSettingsToggleButton(
+                      audioManagerCubit: audioManagerCubit,
+                      enabled: state.soundsEnabled,
+                      enabledIcon: Icons.volume_up_rounded,
+                      disabledIcon: Icons.volume_off_rounded,
+                      onTap: () {
+                        audioManagerCubit.toggleSounds();
+                        if (audioManagerCubit.state.soundsEnabled) {
+                          audioManagerCubit.audioDataDelegate
+                              .playComponentSelectedSound();
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
+            )
         ],
       ),
     );

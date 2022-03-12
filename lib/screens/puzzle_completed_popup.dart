@@ -9,7 +9,6 @@ class PuzzleCompletedPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-    
       title: AnimatedDefaultTextStyle(
         duration: AnimationConstants.longDuration,
         style: context.sizeAwareTextTheme.headline3!,

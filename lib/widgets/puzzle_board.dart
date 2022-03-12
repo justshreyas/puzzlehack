@@ -40,7 +40,7 @@ class PuzzleBoard extends StatelessWidget {
 
         return Container(
           decoration: const BoxDecoration(
-            borderRadius:  BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white60,
           ),
           child: Padding(
