@@ -11,9 +11,9 @@ import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 
 part 'game_session_state.dart';
 
-
 class GameSessionCubit extends Cubit<GameSessionState> {
   final PuzzleDifficulty puzzleDifficulty;
+  int _numberOfMoves = 0;
   GameSessionCubit({
     required this.puzzleDifficulty,
   }) : super(
@@ -21,6 +21,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
             puzzleDifficulty.randomizeAtStart
                 ? SlidingTilesPuzzle.random(puzzleDifficulty.puzzleDimension)
                 : SlidingTilesPuzzle.solved(puzzleDifficulty.puzzleDimension),
+            0,
           ),
         );
 
@@ -28,7 +29,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     final numberOfScrambles = puzzleDifficulty.numberOfScrambles;
 
     // * Start scrambling
-    emit(GameSessionScrambling(state.puzzle));
+    emit(GameSessionScrambling(state.puzzle, _numberOfMoves));
 
     final randomizer = Random();
     final int dimension = puzzleDifficulty.puzzleDimension;
@@ -46,7 +47,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
-        emit(GameSessionOngoing(state.puzzle));
+        emit(GameSessionOngoing(state.puzzle, _numberOfMoves));
       },
     );
   }
@@ -64,7 +65,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
         delayDuration,
         () {
           emit(
-            GameSessionScrambling(changedPuzzle),
+            GameSessionScrambling(changedPuzzle, _numberOfMoves),
           );
         },
       );
@@ -76,9 +77,9 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       final puzzle = state.puzzle;
       if (puzzle.canMoveTile(tile)) {
         final changedPuzzle = state.puzzle.moveTile(tile);
-
+        _numberOfMoves++;
         emit(
-          GameSessionOngoing(changedPuzzle),
+          GameSessionOngoing(changedPuzzle, _numberOfMoves),
         );
 
         return true;
@@ -88,6 +89,6 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   void notifyPuzzleCompleted() {
-    emit(GameSessionEnded(state.puzzle));
+    emit(GameSessionEnded(state.puzzle, _numberOfMoves));
   }
 }

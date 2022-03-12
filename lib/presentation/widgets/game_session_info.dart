@@ -46,8 +46,8 @@ class GameSessionInfo extends StatelessWidget {
             return AnimatedDefaultTextStyle(
               duration: AnimationConstants.longDuration,
               style: context.sizeAwareTextTheme.headline4!,
-              child: const Text(
-                "Number of moves : ZZ",
+              child:  Text(
+                "Number of moves : ${state.numberOfMoves}",
               ),
             );
           },
