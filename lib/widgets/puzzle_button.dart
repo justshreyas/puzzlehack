@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/widgets/utils/layout_constants.dart';
 import 'package:puzzlehack/widgets/utils/text_theme.dart';
 
 class PuzzleButton extends StatefulWidget {
@@ -37,28 +39,30 @@ class _PuzzleButtonState extends State<PuzzleButton> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPadding(
-      duration: AnimationConstants.shortDuration,
-      curve: animationCurve,
-      padding: isHovering
-          ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0)
-          : const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0),
-      child: MouseRegion(
-        onEnter: onEnter,
-        onExit: onExit,
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: widget.onPressed,
-          child: Container(
-            decoration: BoxDecoration(
-              color: isHovering ? Colors.orange[600] : Colors.orange,
-            ),
-            child: AnimatedPadding(
-              duration: AnimationConstants.shortDuration,
-              curve: animationCurve,
+    final displaySize = MediaQuery.of(context).size.displaySize;
+
+    return SizedBox(
+      height: 80,width: 160,
+      child: AnimatedPadding(
+        duration: AnimationConstants.shortDuration,
+        curve: animationCurve,
+        padding: isHovering
+            ? const EdgeInsets.all(0)
+            : LayoutConstants.componentOnHoverPadding(displaySize),
+        child: MouseRegion(
+          onEnter: onEnter,
+          onExit: onExit,
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: widget.onPressed,
+            child: Container(
+              decoration: BoxDecoration(
+                color: isHovering ? Colors.orange[600] : Colors.orange,
+              ),
               padding: isHovering
-                  ? const EdgeInsets.symmetric(horizontal: 40, vertical: 20.0)
-                  : const EdgeInsets.symmetric(horizontal: 20, vertical: 15.0),
+            ? const EdgeInsets.all(0)
+            : LayoutConstants.componentOnHoverPadding(displaySize),
+              alignment:Alignment.center,
               child: AnimatedDefaultTextStyle(
                 duration: AnimationConstants.shortestDuration,
                 style: context.sizeAwareTextTheme.button!,
