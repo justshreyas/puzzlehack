@@ -73,7 +73,7 @@ class _PlayGameState extends State<PlayGame> {
 
                       showDialog(
                         context: context,
-                        barrierColor: Colors.orange.withOpacity(0.54),
+                        barrierColor: Colors.orange.withOpacity(0.38),
                         barrierDismissible: false,
                         builder: (_) {
                           return const PuzzleCompletedPopup();
