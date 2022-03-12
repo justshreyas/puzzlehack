@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 
 class PuzzleSettingsToggleButton extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;

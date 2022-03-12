@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
 
 final TextTheme largeDisplayTextTheme = TextTheme(
   headline1: GoogleFonts.workSans(

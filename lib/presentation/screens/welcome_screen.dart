@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/screens/select_puzzle_variant_screen.dart';
-import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
-import 'package:puzzlehack/widgets/puzzle_button.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
-import 'package:puzzlehack/widgets/utils/layout_constants.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/screens/select_puzzle_variant_screen.dart';
+import 'package:puzzlehack/presentation/utils/layout_constants.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/widgets/buttons/puzzle_button.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

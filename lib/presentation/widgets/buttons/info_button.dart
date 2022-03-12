@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 
-class PuzzleBackButton extends StatefulWidget {
+class PuzzleInfoButton extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;
 
-  const PuzzleBackButton({
+  const PuzzleInfoButton({
     Key? key,
     required this.audioManagerCubit,
   }) : super(key: key);
 
   @override
-  State<PuzzleBackButton> createState() => _PuzzleBackButtonState();
+  State<PuzzleInfoButton> createState() => _PuzzleInfoButtonState();
 }
 
-class _PuzzleBackButtonState extends State<PuzzleBackButton> {
+class _PuzzleInfoButtonState extends State<PuzzleInfoButton> {
   bool isHovering = false;
 
   @override
@@ -54,7 +54,9 @@ class _PuzzleBackButtonState extends State<PuzzleBackButton> {
               widget.audioManagerCubit.audioDataDelegate
                   .playComponentSelectedSound();
             }
-            Navigator.pop(context);
+            showAboutDialog(
+              context: context,
+            );
           },
           child: AnimatedContainer(
             duration: AnimationConstants.mediumDuration,
@@ -68,7 +70,7 @@ class _PuzzleBackButtonState extends State<PuzzleBackButton> {
               aspectRatio: 1,
               child: Center(
                 child: Icon(
-                  Icons.keyboard_backspace,
+                  Icons.more_horiz_sharp,
                   color: isHovering ? Colors.orange[600]! : Colors.orange,
                 ),
               ),

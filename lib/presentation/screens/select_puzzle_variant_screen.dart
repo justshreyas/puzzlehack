@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
-import 'package:puzzlehack/widgets/puzzle_selection_options.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
-import 'package:puzzlehack/widgets/utils/layout_constants.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/layout_constants.dart';
+import 'package:puzzlehack/presentation/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_selection_options.dart';
 
 class SelectPuzzleVariantScreen extends StatefulWidget {
   final AudioManagerCubit audioManagerCubit;

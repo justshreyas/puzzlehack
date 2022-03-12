@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
-import 'package:puzzlehack/widgets/utils/layout_constants.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/layout_constants.dart';
+import 'package:puzzlehack/presentation/utils/text_theme.dart';
 
 class PuzzleButton extends StatefulWidget {
   final String text;

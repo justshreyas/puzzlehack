@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/screens/game_session_page.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
-import 'package:puzzlehack/widgets/utils/layout_constants.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/screens/game_session_page.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/layout_constants.dart';
+import 'package:puzzlehack/presentation/utils/text_theme.dart';
 
 class PuzzleSelectionCard extends StatefulWidget {
   final PuzzleDifficulty difficulty;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/widgets/puzzle_selection_card.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_selection_card.dart';
 
 class PuzzleSelectionOptions extends StatelessWidget {
   final AudioManagerCubit audioManagerCubit;

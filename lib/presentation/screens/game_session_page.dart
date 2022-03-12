@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
 import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
-import 'package:puzzlehack/screens/puzzle_completed_popup.dart';
-import 'package:puzzlehack/widgets/puzzle_app_bar.dart';
-import 'package:puzzlehack/widgets/puzzle_board.dart';
-import 'package:puzzlehack/widgets/utils/animation_constants.dart';
-import 'package:puzzlehack/widgets/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/screens/puzzle_completed_popup.dart';
+import 'package:puzzlehack/presentation/utils/animation_constants.dart';
+import 'package:puzzlehack/presentation/utils/text_theme.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_app_bar.dart';
+import 'package:puzzlehack/presentation/widgets/puzzle_board.dart';
 
 class GameSessionPage extends StatefulWidget {
   final GameSessionCubit gameSessionCubit;

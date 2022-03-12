@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/widgets/utils/display_size.dart';
+import 'package:puzzlehack/presentation/utils/display_size.dart';
 
 class LayoutConstants {
   static const Size buttonSizeSmall = Size(80, 40);
