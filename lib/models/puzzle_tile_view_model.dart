@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:puzzlehack/core/puzzle/puzzle_grid_position.dart';
+import 'package:puzzlehack/models/puzzle_grid_position.dart';
 
 class PuzzleTileViewModel {
   final String id;

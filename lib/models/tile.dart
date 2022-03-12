@@ -1,4 +1,4 @@
-import 'package:puzzlehack/core/puzzle/puzzle_grid_position.dart';
+import 'package:puzzlehack/models/puzzle_grid_position.dart';
 
 class PuzzleTile {
   final String id;

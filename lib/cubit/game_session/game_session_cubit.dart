@@ -4,12 +4,13 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
-import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
-import 'package:puzzlehack/core/puzzle/tile.dart';
+import 'package:puzzlehack/models/puzzle_difficulty.dart';
+import 'package:puzzlehack/models/sliding_tiles_puzzle.dart';
+import 'package:puzzlehack/models/tile.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 
 part 'game_session_state.dart';
+
 
 class GameSessionCubit extends Cubit<GameSessionState> {
   final PuzzleDifficulty puzzleDifficulty;

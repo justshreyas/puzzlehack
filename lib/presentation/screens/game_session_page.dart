@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puzzlehack/core/puzzle/sliding_tiles_puzzle.dart';
-import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/models/sliding_tiles_puzzle.dart';
+import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/screens/puzzle_completed_popup.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
+import 'package:puzzlehack/models/puzzle_tile_view_model.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 import 'package:puzzlehack/presentation/utils/display_size.dart';
 import 'package:puzzlehack/presentation/utils/text_theme.dart';

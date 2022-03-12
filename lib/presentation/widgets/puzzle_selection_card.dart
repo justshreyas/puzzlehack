@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
-import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/models/puzzle_difficulty.dart';
+import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/screens/game_session_page.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';

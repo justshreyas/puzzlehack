@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehack/core/puzzle/puzzle_difficulty.dart';
+import 'package:puzzlehack/models/puzzle_difficulty.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/utils/animation_constants.dart';
 import 'package:puzzlehack/presentation/widgets/puzzle_selection_card.dart';

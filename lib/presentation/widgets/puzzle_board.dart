@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puzzlehack/core/puzzle/tile.dart';
-import 'package:puzzlehack/core/puzzle_logic/cubit/game_session_cubit.dart';
+import 'package:puzzlehack/models/tile.dart';
+import 'package:puzzlehack/cubit/game_session/game_session_cubit.dart';
 import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/widgets/sliding_tile.dart';
-import 'package:puzzlehack/view_models/puzzle_tile_view_model.dart';
+import 'package:puzzlehack/models/puzzle_tile_view_model.dart';
 
 class PuzzleBoard extends StatelessWidget {
   final GameSessionCubit cubit;
