@@ -66,8 +66,10 @@ class _PuzzleSelectionCardState extends State<PuzzleSelectionCard> {
             : LayoutConstants.componentOnHoverPadding(displaySize),
         child: GestureDetector(
           onTap: () {
-            unawaited(widget.audioManagerCubit.audioDataDelegate
-                .playComponentSelectedSound());
+            if (widget.audioManagerCubit.state.soundsEnabled) {
+              unawaited(widget.audioManagerCubit.audioDataDelegate
+                  .playComponentSelectedSound());
+            }
 
             final cubit = GameSessionCubit(
               puzzleDifficulty: widget.difficulty,
