@@ -47,10 +47,8 @@ class AudioDataDelegate {
         .firstWhere((entry) => entry.key == "countdown-timer")
         .value;
 
-    await player.play();
-
-    await player.pause();
-    await player.seek(Duration.zero);
+    player.play();
+    return;
   }
 
   Future<void> pausePreGameMusic() async {
@@ -66,9 +64,7 @@ class AudioDataDelegate {
         .value;
 
     await player.play();
-
-    await player.setLoopMode(LoopMode.one);
-    await player.seek(Duration.zero);
+    return;
   }
 
   Future<void> pauseGameSessionMusic() async {
@@ -83,9 +79,7 @@ class AudioDataDelegate {
         players.entries.firstWhere((entry) => entry.key == "tile-tapped").value;
 
     await player.play();
-
-    await player.pause();
-    await player.seek(Duration.zero);
+    return;
   }
 
   Future<void> playPuzzleCompletedSound() async {
@@ -94,9 +88,7 @@ class AudioDataDelegate {
         .value;
 
     await player.play();
-
-    await player.pause();
-    await player.seek(Duration.zero);
+    return;
   }
 
   Future<void> playComponentHoveredSound() async {
@@ -105,9 +97,7 @@ class AudioDataDelegate {
         .value;
 
     await player.play();
-
-    await player.pause();
-    await player.seek(Duration.zero);
+    return;
   }
 
   Future<void> playComponentSelectedSound() async {
@@ -116,8 +106,6 @@ class AudioDataDelegate {
         .value;
 
     await player.play();
-
-    await player.pause();
-    await player.seek(Duration.zero);
+    return;
   }
 }
