@@ -1,6 +1,6 @@
 # puzzlehack
 
-A new Flutter project.
+A submission for the Flutter Puzzle Hack 2022.
 
 ## Getting Started
 

@@ -3,9 +3,9 @@
     "short_name": "FlutterPuzzleHack by justshreyas",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#FF9800",
+    "background_color": "#FFF3E0",
     "theme_color": "#FF9800",
-    "description": "A new Flutter project.",
+    "description": "A submission for the Flutter Puzzle Hack 2022.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
