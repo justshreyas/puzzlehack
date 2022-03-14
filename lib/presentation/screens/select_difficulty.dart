@@ -43,27 +43,30 @@ class _SelectDifficultyState extends State<SelectDifficulty> {
       appBar: PuzzleAppBar(
         audioManagerCubit: widget.audioManagerCubit,
       ),
-      body: Padding(
-        padding: LayoutConstants.bodyPadding(displaySize),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AnimatedDefaultTextStyle(
-              duration: AnimationConstants.longDuration,
-              style: context.sizeAwareTextTheme.headline4!,
-              child: const Text(
-                "Select a difficulty level",
-              ),
-            ),
-            const SizedBox(height: 50, width: 50),
-            Expanded(
-              child: Center(
-                child: PuzzleSelectionOptions(
-                  audioManagerCubit: widget.audioManagerCubit,
+      body: Container(
+        constraints: const BoxConstraints(minHeight: 200),
+        child: Padding(
+          padding: LayoutConstants.bodyPadding(displaySize),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              AnimatedDefaultTextStyle(
+                duration: AnimationConstants.longDuration,
+                style: context.sizeAwareTextTheme.headline4!,
+                child: const Text(
+                  "Select a difficulty level",
                 ),
               ),
-            )
-          ],
+              const SizedBox(height: 50, width: 50),
+              Expanded(
+                child: Center(
+                  child: PuzzleSelectionOptions(
+                    audioManagerCubit: widget.audioManagerCubit,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

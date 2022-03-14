@@ -23,45 +23,49 @@ class Welccome extends StatelessWidget {
         showBackButton: false,
       ),
       backgroundColor: Colors.orange[50],
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AnimatedDefaultTextStyle(
-                duration: AnimationConstants.shortDuration,
-                style: context.sizeAwareTextTheme.headline2!,
-                child: const Text(
-                  "Flutter Puzzle Hack",
-                  textAlign: TextAlign.center,
+      body: Container(
+        constraints: const BoxConstraints(minHeight: 200),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedDefaultTextStyle(
+                  duration: AnimationConstants.shortDuration,
+                  style: context.sizeAwareTextTheme.headline2!,
+                  child: const Text(
+                    "Flutter Puzzle Hack",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 5),
-              AnimatedDefaultTextStyle(
-                duration: AnimationConstants.shortDuration,
-                style: context.sizeAwareTextTheme.subtitle2!,
-                child: const Text(
-                  "a submission\nby justshreyas",
-                  textAlign: TextAlign.center,
+                const SizedBox(height: 5),
+                AnimatedDefaultTextStyle(
+                  duration: AnimationConstants.shortDuration,
+                  style: context.sizeAwareTextTheme.subtitle2!,
+                  child: const Text(
+                    "a submission\nby justshreyas",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              SizedBox.fromSize(size: LayoutConstants.spacer(displaySize)),
-              PuzzleButton(
-                displaySize: displaySize,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      settings: const RouteSettings(name: "/SelectDifficulty"),
-                      builder: (context) => SelectDifficulty(
-                        audioManagerCubit: audioManagerCubit,
+                SizedBox.fromSize(size: LayoutConstants.spacer(displaySize)),
+                PuzzleButton(
+                  displaySize: displaySize,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        settings:
+                            const RouteSettings(name: "/SelectDifficulty"),
+                        builder: (context) => SelectDifficulty(
+                          audioManagerCubit: audioManagerCubit,
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

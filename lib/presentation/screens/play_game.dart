@@ -184,23 +184,26 @@ class _PlayGameState extends State<PlayGame> {
               ),
             );
 
-            return AnimatedSwitcher(
-              duration: AnimationConstants.shortestDuration,
-              transitionBuilder: (child, animation) =>
-                  FadeTransition(opacity: animation, child: child),
-              child: constraints.maxWidth > constraints.maxHeight
-                  ? Row(
-                      children: [
-                        gameWidget,
-                        scoreWidget,
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        gameWidget,
-                        scoreWidget,
-                      ],
-                    ),
+            return Container(
+              constraints: const BoxConstraints(minHeight: 200),
+              child: AnimatedSwitcher(
+                duration: AnimationConstants.shortestDuration,
+                transitionBuilder: (child, animation) =>
+                    FadeTransition(opacity: animation, child: child),
+                child: constraints.maxWidth > constraints.maxHeight
+                    ? Row(
+                        children: [
+                          gameWidget,
+                          scoreWidget,
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          gameWidget,
+                          scoreWidget,
+                        ],
+                      ),
+              ),
             );
           },
         ),
