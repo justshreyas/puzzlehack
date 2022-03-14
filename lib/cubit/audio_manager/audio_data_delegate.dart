@@ -65,7 +65,8 @@ class AudioDataDelegate {
         .firstWhere((entry) => entry.key == "background-music")
         .value;
 
-    player.setLoopMode(LoopMode.one);
+    await player.setLoopMode(LoopMode.one);
+    await player.seek(Duration.zero);
 
     return player.play();
   }
