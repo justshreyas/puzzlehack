@@ -12,17 +12,20 @@ final TextTheme largeDisplayTextTheme = TextTheme(
   headline2: GoogleFonts.workSans(
     fontSize: 51,
     fontWeight: FontWeight.w400,
+    color: Colors.grey[800],
   ),
   headline3: GoogleFonts.workSans(
     fontSize: 36,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
     height: 1.1,
+    color: Colors.grey[800],
   ),
   headline4: GoogleFonts.workSans(
     fontSize: 27,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
+    color: Colors.grey[800],
   ),
   subtitle1: GoogleFonts.workSans(
     fontSize: 21,
@@ -63,17 +66,20 @@ final TextTheme mediumDisplayTextTheme = TextTheme(
   headline2: GoogleFonts.workSans(
     fontSize: 36,
     fontWeight: FontWeight.w400,
+    color: Colors.grey[800],
   ),
   headline3: GoogleFonts.workSans(
     fontSize: 24,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
     height: 1.1,
+    color: Colors.grey[800],
   ),
   headline4: GoogleFonts.workSans(
     fontSize: 18,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
+    color: Colors.grey[800],
   ),
   subtitle1: GoogleFonts.workSans(
     fontSize: 15,
@@ -85,16 +91,19 @@ final TextTheme mediumDisplayTextTheme = TextTheme(
     fontSize: 12,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
+    color: Colors.grey[600],
   ),
   bodyText1: GoogleFonts.workSans(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.5,
+    color: Colors.grey[600],
   ),
   bodyText2: GoogleFonts.workSans(
     fontSize: 9,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
+    color: Colors.grey[600],
   ),
   button: GoogleFonts.workSans(
     fontSize: 15,
@@ -114,17 +123,20 @@ final TextTheme smallDisplayTextTheme = TextTheme(
   headline2: GoogleFonts.workSans(
     fontSize: 24,
     fontWeight: FontWeight.w400,
+    color: Colors.grey[800],
   ),
   headline3: GoogleFonts.workSans(
     fontSize: 21,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
     height: 1.1,
+    color: Colors.grey[800],
   ),
   headline4: GoogleFonts.workSans(
     fontSize: 18,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
+    color: Colors.grey[800],
   ),
   subtitle1: GoogleFonts.workSans(
     fontSize: 12,
@@ -136,16 +148,19 @@ final TextTheme smallDisplayTextTheme = TextTheme(
     fontSize: 10,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
+    color: Colors.grey[600],
   ),
   bodyText1: GoogleFonts.workSans(
     fontSize: 9,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.5,
+    color: Colors.grey[600],
   ),
   bodyText2: GoogleFonts.workSans(
     fontSize: 8,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
+    color: Colors.grey[600],
   ),
   button: GoogleFonts.workSans(
     fontSize: 10,
