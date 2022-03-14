@@ -23,14 +23,51 @@ class PuzzleCompletedPopup extends StatelessWidget {
           "Wohoo!",
         ),
       ),
-      content: AnimatedDefaultTextStyle(
-        duration: AnimationConstants.shortDuration,
-        style: context.sizeAwareTextTheme.subtitle2!,
-        child: Text(
-          "You made it! You solved the sliding tiles puzzle in "
-          "\n$puzzleCompletionTime, "
-          "\nusing a total of $totalMoves moves.", 
-        ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AnimatedDefaultTextStyle(
+            duration: AnimationConstants.shortDuration,
+            style: context.sizeAwareTextTheme.subtitle2!,
+            child: const Text(
+                "You made it! You solved the sliding tiles puzzle in"),
+          ),
+          AnimatedDefaultTextStyle(
+            duration: AnimationConstants.shortDuration,
+            style: context.sizeAwareTextTheme.subtitle2!
+                .copyWith(color: Colors.orange[600]),
+            child: Text("$puzzleCompletionTime, "),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AnimatedDefaultTextStyle(
+                duration: AnimationConstants.shortDuration,
+                style: context.sizeAwareTextTheme.subtitle2!,
+                child: const Text(
+                  "using a total of ",
+                ),
+              ),
+              AnimatedDefaultTextStyle(
+                duration: AnimationConstants.shortDuration,
+                style: context.sizeAwareTextTheme.subtitle2!
+                    .copyWith(color: Colors.orange),
+                child: Text(
+                  totalMoves,
+                ),
+              ),
+              AnimatedDefaultTextStyle(
+                duration: AnimationConstants.shortDuration,
+                style: context.sizeAwareTextTheme.subtitle2!,
+                child: const Text(
+                  " moves.",
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       actions: [
         PuzzleButton(
