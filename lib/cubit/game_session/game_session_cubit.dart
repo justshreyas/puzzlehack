@@ -42,7 +42,8 @@ class GameSessionCubit extends Cubit<GameSessionState> {
 
   Future<void> scrambleTiles() async {
     await Future.delayed(
-      const Duration(milliseconds: 300),);
+      const Duration(milliseconds: 300),
+    );
     await onlyScrambleTiles();
 
     // * Stop scrambling and let user play

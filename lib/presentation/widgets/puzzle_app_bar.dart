@@ -4,7 +4,6 @@ import 'package:puzzlehack/cubit/audio_manager/audio_manager_cubit.dart';
 import 'package:puzzlehack/presentation/widgets/buttons/back_button.dart';
 import 'package:puzzlehack/presentation/widgets/buttons/settings_button.dart';
 
-
 class PuzzleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AudioManagerCubit audioManagerCubit;
   final bool isPlayingGame;
