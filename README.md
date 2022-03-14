@@ -73,12 +73,10 @@ I've used this widget to wrap all of my text. This helped me with a smooth chang
 - Pushing the limits of what is already responsive.
 
 # Links
-Link to working Demo : https://justshreyas.github.io/puzzlehack/
-Link to GitHub repository : https://github.com/justshreyas/puzzlehack
-Link to my Flutter Puzzle Hack submission : https://devpost.com/software/sliding-tiles-puzzle-game-by-justshreyas
-
-Link to Flutter Puzzle Hack Details : https://flutterhack.devpost.com/
-Link to Flutter Docs : https://flutter.dev
-
-Follow me on Twitter : twitter.com/just_shreyas
-Follow me on Instagram : instagram.com/justshreyas
+- Link to working Demo : https://justshreyas.github.io/puzzlehack/
+- Link to GitHub repository : https://github.com/justshreyas/puzzlehack
+- Link to my Flutter Puzzle Hack submission : https://devpost.com/software/sliding-tiles-puzzle-game-by-justshreyas
+- Link to Flutter Puzzle Hack Details : https://flutterhack.devpost.com/
+- Link to Flutter Docs : https://flutter.dev
+- Follow me on Twitter : https://twitter.com/just_shreyas
+- Follow me on Instagram : https://instagram.com/justshreyas
